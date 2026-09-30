@@ -1,0 +1,34 @@
+.resume-dialog { width: min(760px, calc(100% - 32px)); max-height: calc(100dvh - 40px); padding: 0; color: var(--text-color); background: var(--surface-color); border: 1px solid var(--border-color); border-radius: 16px; box-shadow: 0 24px 100px #0006; }
+.resume-dialog::backdrop { background: #060d19b3; backdrop-filter: blur(5px); }
+.resume-dialog__actions { position: sticky; top: 0; display: flex; align-items: center; flex-wrap: wrap; gap: 8px; padding: 12px 20px; border-bottom: 1px solid var(--border-color); background: var(--surface-color); }
+.resume-dialog__actions > span { font-size: .72rem; margin-right: auto; color: var(--muted-text-color); }
+.resume-dialog__actions button { min-height: 44px; padding: 8px 12px; border: 1px solid var(--border-color); border-radius: 8px; color: var(--text-color); background: var(--background-color); font-size: .75rem; }
+.resume-document { padding: 32px 40px; font-size: .84rem; line-height: 1.75; }
+.resume-document h2 { font-size: 2rem; margin: 0 0 10px; }
+.resume-document h3 { font-size: 1.08rem; border-bottom: 1px solid var(--border-color); padding-bottom: 10px; margin: 28px 0 16px; }
+.resume-document h3 > span { float: right; font-size: .82rem; color: var(--accent-color); }
+.resume-document h4 { font-size: .88rem; margin: 0 0 8px; }
+.resume-document__links { display: inline-flex; gap: 16px; margin-left: 20px; }
+.resume-document article { margin-bottom: 18px; }
+.resume-document__meta { display: flex; justify-content: space-between; gap: 16px; }
+.resume-document__meta span { font-size: .75rem; color: var(--muted-text-color); }
+.resume-document article p { margin: 3px 0; }
+.resume-document ul { padding-left: 20px; margin: 8px 0; }
+.resume-document__scope { font-size: .72rem; color: var(--muted-text-color); }
+.resume-document dl > div { display: grid; grid-template-columns: 150px minmax(0, 1fr); gap: 16px; margin-bottom: 6px; }
+.resume-document dt { font-weight: 600; }
+.resume-document dd { margin: 0; color: var(--muted-text-color); }
+.resume-document footer { margin-top: 28px; border-top: 1px solid var(--border-color); padding-top: 16px; font-size: .72rem; }
+@media (max-width: 480px) { .resume-dialog__actions { padding: 8px 12px; } .resume-dialog__actions > span { flex-basis: 100%; } .resume-document { padding: 24px; } .resume-document dl > div { display: block; margin-bottom: 10px; } .resume-document__links { margin: 10px 0 0; display: flex; } }
+@media print {
+  body:has(.resume-dialog[open]) .app-shell { display: none; }
+  .resume-dialog[open] { position: static; width: 100%; max-width: none; height: auto; max-height: none; margin: 0; padding: 0; overflow: visible; border: 0; border-radius: 0; box-shadow: none; }
+  .resume-dialog::backdrop, .resume-dialog__actions { display: none; }
+  .resume-document { padding: 0; font-size: 9pt; line-height: 1.5; }
+  .resume-document .eyebrow { margin-bottom: 4px; }
+  .resume-document h2 { font-size: 22pt; margin-bottom: 6px; }
+  .resume-document h3 { margin-top: 16px; padding-bottom: 6px; font-size: 12pt; }
+  .resume-document article { break-inside: avoid; margin-bottom: 10px; }
+  .resume-document__scope { font-size: 8pt; }
+  .resume-document footer { margin-top: 16px; }
+}

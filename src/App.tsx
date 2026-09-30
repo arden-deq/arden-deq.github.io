@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import './App.css'
 import Nav from './components/Nav'
 import Section from './components/Section'
 import Timeline from './components/Timeline'
@@ -7,11 +8,12 @@ import ProjectDetail from './components/ProjectDetail'
 import FeaturedCases from './components/FeaturedCases'
 import SkillsGrid from './components/SkillsGrid'
 import ExplorationCard from './components/ExplorationCard'
+import Hero from './components/Hero'
 import usePortfolioNavigation from './hooks/usePortfolioNavigation'
 import { profile } from './assets/data/profile'
-import './App.css'
 
 function App() {
+  const [selectedCaseIndex, setSelectedCaseIndex] = useState(0)
   const [theme, setTheme] = useState(() => {
     try { return localStorage.getItem('theme') === 'light' ? 'light' : 'dark' }
     catch { return 'dark' }
@@ -69,30 +71,15 @@ function App() {
           )
         ) : (
           <>
-            <section id="profile" className="section hero-section" tabIndex={-1} aria-labelledby="profile-title">
-              <div className="hero">
-                <div className="hero__content">
-                  <p className="hero__identity"><strong>{profile.hero.name}</strong><span>{profile.hero.title}</span></p>
-                  <h1 id="profile-title" className="hero__title">{profile.hero.headline}</h1>
-                  <p className="hero__lead">{profile.hero.summary}</p>
-                  <div className="hero__cta">
-                    <a className="button" href="#cases">대표 사례 읽기 <span aria-hidden="true">↓</span></a>
-                    <a className="button button--ghost" href="#projects">프로젝트 살펴보기</a>
-                  </div>
-                </div>
-                <div className="hero__media">
-                  <img src={`${import.meta.env.BASE_URL}jdnam4.jpg`} alt="남정덕" className="hero__photo" width="180" height="240" fetchPriority="high" />
-                </div>
-              </div>
-              <p className="hero__footnote">업무에서는 Java와 Spring, 개인 프로젝트에서는 로컬 AI와 실시간 게임을 다룹니다.</p>
-            </section>
+            <Hero />
 
-            <Section id="cases" title="대표 문제 해결" subtitle="Selected engineering cases" intro="실무의 DB 성능·이벤트 순서 개선과 개인 프로젝트의 서버 기록 검증을 소개합니다.">
-              <FeaturedCases />
+            <Section id="cases" title="운영 문제를 해결한 세 가지 판단" subtitle="Selected work · 01 — 03" intro="병목은 조회 조건으로 좁히고, 이벤트는 순서를 맞추고, 수동점수는 보존했습니다.">
+              <FeaturedCases selectedIndex={selectedCaseIndex} onSelectCase={setSelectedCaseIndex} />
             </Section>
 
-            <Section id="career" title="개발과 운영을 이어온 경력" subtitle="Career">
-              <Timeline items={profile.career} variant="career" />
+            <Section id="career" title="개발과 운영을 이어온 경력" subtitle={`Career · ${profile.careerSummary.asOf} 기준`}>
+              <Timeline items={[...profile.career].reverse()} variant="career" />
+              <p className="career-calculation"><strong>총 실무경력 {profile.careerSummary.total}.</strong> {profile.careerSummary.calculation}</p>
             </Section>
 
             <Section id="projects" title="프로젝트와 담당 범위" subtitle="Projects" intro="퓨쳐누리에서 정규직과 프리랜서로 수행한 프로젝트입니다.">
@@ -136,7 +123,7 @@ function App() {
           </>
         )}
       </main>
-      <footer className="site-footer">남정덕 · Backend Engineer<span>경력 내용 기준 2026.09</span></footer>
+      <footer className="site-footer">남정덕 · Backend Engineer<span>경력 내용 기준 {profile.careerSummary.asOf}</span></footer>
     </div>
   )
 }

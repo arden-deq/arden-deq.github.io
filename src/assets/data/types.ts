@@ -5,12 +5,39 @@ export interface CaseStep {
   paragraphs: string[]
 }
 
+export type CaseEvidence = {
+  caption: string
+  note: string
+} & (
+  | { kind: 'timing'; beforeMs: number; afterMs: number }
+  | {
+    kind: 'sequence'
+    before: { title: string; description: string }[]
+    after: { title: string; description: string }[]
+    beforeNote: string
+    afterNote: string
+  }
+  | {
+    kind: 'regrading'
+    stages: { title: string; description: string }[]
+    checks: { label: string; expected: string; actual: string }[]
+  }
+  | {
+    kind: 'contract'
+    scenarios: { label: string; input: string; before: string; after: string }[]
+  }
+)
+
 export interface EngineeringCase {
   id: string
   navTitle?: string
   title: string
   axis: Axis
   summary: string
+  decision?: string
+  verification?: string
+  scope?: string
+  evidence?: CaseEvidence
   role: string
   outcome: string
   steps: CaseStep[]
@@ -46,6 +73,7 @@ export interface Project {
   featuredTech?: string[]
   summary: string
   focus: string
+  responsibility?: string
   context: string[]
   contributions: { title: string; description: string }[]
   flow?: ProjectFlow
@@ -59,6 +87,7 @@ export interface Project {
     imageAlt: string
     caption: string
     question: string
+    quickLink?: { title: string; url: string }
   }
   writings?: { title: string; url: string; date: string; summary: string }[]
 }

@@ -19,6 +19,7 @@ export const charanest: Project = {
     imageAlt: '데스크톱 위에 픽셀 캐릭터, 대화 로그와 입력창을 띄운 CharaNest 개발 화면',
     caption: '실제 개발 빌드 · 화면 일부에는 이전 프로젝트 명칭이 남아 있습니다.',
     question: '“더 짧게 말해줘”가 왜 검색으로 이어졌을까?',
+    quickLink: { title: '설계·화면 보기', url: showcaseUrl },
   },
   context: [
     '픽셀 캐릭터가 데스크톱에 머물며 대화하는 오프라인 우선 AI 컴패니언 프로토타입입니다. Electron 오버레이, 로컬 LLM과 SQLite를 연결하고 Windows·macOS에서 개발·검증했습니다.',
@@ -48,6 +49,7 @@ export const charanest: Project = {
       axis: 'Correctness',
       status: '2026.05~06 실험 기록',
       summary: '작은 모델의 한계로 보였던 대화 오류를 이전 맥락과 현재 요청의 계약 문제로 좁혔습니다.',
+      decision: '기존 답변의 스타일 수정은 새 정보 조회와 분리하고, 이전 검색 맥락을 현재 요청에 전달하지 않는 계약을 만들었습니다.',
       role: '대화 흐름 분석, style continuation 계약과 실패 진단 보완, 회귀 평가.',
       steps: [
         { label: '증상 · 초기 가설', paragraphs: ['짧은 후속 요청에서 대화가 어긋났습니다. 처음에는 작은 로컬 모델의 성능을 의심했지만, “더 짧게”라는 요청이 새 검색으로 이어지는 동작은 모델 교체만으로 설명하기 어려웠습니다.'] },
@@ -67,6 +69,7 @@ export const charanest: Project = {
       title: '테스트는 통과했지만, 출시를 보류했다',
       axis: 'Reliability',
       summary: '로컬 모델의 시작·종료와 실행 환경을 관리하고, 기능 통과와 제품 출시의 기준을 분리했습니다.',
+      decision: '실행 환경을 고정해 재현하고, 기능 테스트 통과와 별도로 제품 품질 gate를 적용했습니다.',
       role: '로컬 런타임 통합, OS별 재현 절차와 평가·릴리스 자동화.',
       steps: [
         { label: '문제 정의', paragraphs: ['데스크톱 AI는 모델 파일, native module, GPU/CPU와 자식 프로세스 상태에 영향을 받습니다. 같은 앱이라도 Windows와 macOS에서 응답이 달랐고, 기능 테스트의 통과가 사용자 경험의 완성을 뜻하지 않았습니다.'] },

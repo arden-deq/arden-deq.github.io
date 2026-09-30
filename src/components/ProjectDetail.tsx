@@ -63,6 +63,7 @@ export default function ProjectDetail({ project, section, backHref }: ProjectDet
               <h1 id="project-title" className="detail__title">{project.name}</h1>
               <p className="detail__role">{project.role}</p>
               <p className="detail__tagline">{project.summary}</p>
+              {project.responsibility && <p className="detail__responsibility"><strong>책임·협업 범위</strong>{project.responsibility}</p>}
               <div className="detail__tech" aria-label="사용 기술과 아키텍처">
                 {project.tech.map((stack) => <span key={stack} className="chip">{stack}</span>)}
               </div>
@@ -73,8 +74,11 @@ export default function ProjectDetail({ project, section, backHref }: ProjectDet
                 <figcaption><span>{project.showcase.status}</span>{project.showcase.caption}</figcaption>
               </figure>
             )}
-            <h2 className="detail__block-title">프로젝트 개요</h2>
-            {project.context.map((paragraph) => <p key={paragraph} className="detail__paragraph">{paragraph}</p>)}
+            {project.cases.length > 0 && <nav className="project-case-index" aria-label="이 프로젝트의 문제 해결 사례">{project.cases.map((item) => <a key={item.id} href={href(item.id)}>{item.navTitle || item.title}<span aria-hidden="true">↓</span></a>)}</nav>}
+            <details className="project-background">
+              <summary>프로젝트 배경과 공통 범위</summary>
+              {project.context.map((paragraph) => <p key={paragraph} className="detail__paragraph">{paragraph}</p>)}
+            </details>
             {project.links && (
               <div className="detail__links">
                 {project.links.map((link) => <a key={link.title} href={link.url} target="_blank" rel="noreferrer noopener">{link.title} ↗</a>)}
@@ -108,7 +112,7 @@ export default function ProjectDetail({ project, section, backHref }: ProjectDet
                 <p>문제를 정의하고, 변경 범위를 정하고, 결과를 확인한 과정입니다.</p>
               </header>
               {project.cases.map((item, index) => (
-                <CaseStudy key={item.id} item={item} index={index} href={href(item.id)} expanded={section === item.id} />
+                <CaseStudy key={item.id} item={item} index={index} href={href(item.id)} active={section === item.id} />
               ))}
             </section>
           )}

@@ -9,8 +9,9 @@ export const kice: Project = {
   employment: { company: '퓨쳐누리', type: '프리랜서' },
   tech: ['Java 17', 'Spring Boot', 'Kafka', 'Redis', 'OpenFeign', 'MSA', 'MyBatis', 'PostgreSQL', 'Docker'],
   featuredTech: ['Java 17', 'Spring Boot', 'Kafka', 'Redis', 'OpenFeign', 'MSA'],
-  summary: 'MSA 환경에서 다유형 문항 CRUD, 시험지 패키징, 자동·수동·재채점을 구현했습니다. OpenFeign 기반 서비스 호출과 Kafka 채점 Consumer를 개발하고, 답안 저장과 채점의 이벤트 순서 개선에 참여했습니다.',
+  summary: '문항 CRUD에서 시험지 패키징, 자동·수동·재채점까지 구현했습니다. 미전송 데이터 보존과 채점 이벤트 순서를 보완했습니다.',
   focus: '문항 CRUD · 시험지 패키징 · Kafka 자동채점 · 수동·재채점',
+  responsibility: '문항·시험지·채점을 구현했습니다. Kafka 개선은 관리자 검토·승인 후 구현·검증에 참여했습니다.',
   context: [
     '다양한 유형의 문항을 저작하고 시험지를 구성해 학생의 응시와 학력진단으로 연결하는 시스템입니다. 백엔드를 중심으로 문항은행·시험지·학생/감독 시행·채점과 공통 프론트를 횡단해 기여했습니다.',
     '프로젝트의 표준 문항 유형은 14종이며 서비스 연결 범위는 11종입니다. 이 중 다유형 CRUD·레거시 변환·채점과 서비스 연결을 담당했습니다.',
@@ -34,9 +35,20 @@ export const kice: Project = {
   cases: [
     {
       id: 'excel-contract', navTitle: 'Excel 저장 계약',
-      title: 'Excel에 없는 필드는 보존하도록 저장 계약을 바꿨습니다',
+      title: 'Excel에 없는 필드의 기존 값 보존',
       axis: 'Correctness',
-      summary: '입력 양식이 다룰 수 있는 범위에 맞춰 저장 동작을 바꿨습니다. 업로드 경로를 구분하고, 전체 교체 대신 식별 Key 기반 갱신을 적용했습니다.',
+      summary: 'Excel에 입력·삭제 필드가 없는 보정자료까지 전체 교체 과정에서 사라졌습니다.',
+      decision: '미전송은 삭제 요청이 아닙니다. Excel 경로를 구분하고 식별 Key 기반 갱신으로 바꿨습니다.',
+      verification: 'STG에서 입력한 값의 갱신과 양식에 없는 보정자료의 보존을 함께 확인했습니다.',
+      scope: 'Excel 업로드 경로의 STG 확인 결과입니다. 미전송·null·명시적 삭제의 전체 계약 테스트는 향후 검토 항목입니다.',
+      evidence: {
+        kind: 'contract', caption: '양식이 전달할 수 있는 범위만 변경',
+        scenarios: [
+          { label: '양식에 있는 값', input: 'Excel에 변경값을 입력', before: '전체 교체에 포함', after: '식별 Key 기준으로 갱신' },
+          { label: '양식에 없는 보정자료', input: '입력·삭제 필드가 없어 미전송', before: '전체 교체 과정에서 삭제', after: '기존 값 보존' },
+        ],
+        note: '당시 저장 계약과 STG 확인 범위를 재구성한 설명입니다. 실행 가능한 운영 코드나 새로 수행한 테스트는 아닙니다.',
+      },
       role: 'Excel·Feign·저장 흐름 분석, 저장 계약 수정, STG 검증',
       outcome: 'Excel의 변경 대상은 갱신하고, 양식에 없는 기존 보정자료는 보존',
       steps: [
@@ -62,6 +74,7 @@ export const kice: Project = {
       title: '원본 답안을 보존하며 채점 규칙을 구현했습니다',
       axis: 'Correctness',
       summary: '텍스트·수식·다중 슬롯·핫스팟의 표현을 정규화하고, 부분점수·수동점수·평가 제외가 함께 동작하도록 채점 로직을 구현했습니다.',
+      decision: '원본 답안은 보존하고 판정용 표현만 정규화했습니다. 자동·수동·부분점수와 평가 제외의 의미를 나눠 처리했습니다.',
       role: '답안 정규화, 자동·부분·수동·재채점 규칙, 답안 반응 이력 구현·보완',
       outcome: '원본 답안을 보존하면서 유형별 판정과 점수 병합·평가 제외 규칙을 반영',
       steps: [
@@ -82,11 +95,28 @@ export const kice: Project = {
     },
     {
       id: 'safe-regrading', navTitle: '재채점과 수동점수 보존',
-      title: '재채점 전에 바꿀 점수와 보존할 점수를 정했습니다',
+      title: '수동점수 525건을 보존한 175명 재채점',
       axis: 'Correctness',
-      summary: '전체 대상의 preview를 확인하고 대표 2명을 먼저 실행했습니다. 이후 175명을 재채점하고 예상 변화량과 실제 결과, 수동점수 보존을 대조했습니다.',
+      summary: '자동채점이 불일치한 2문항을 재계산하면서 기존 수동점수를 보존해야 했습니다.',
+      decision: '바꿀 자동점수와 보존할 수동점수를 나누고, 전체 preview와 대표 2명 선실행으로 변경 범위를 확인했습니다.',
+      verification: '수동점수 보존과 총점 증가를 각각 대조하고, 성취수준이 바뀐 28명을 식별했습니다.',
+      scope: '업무일지·사건보고의 단일 운영 작업입니다. 총점 합계 일치를 개별 점수 전체의 정확성 지표로 확대하지 않습니다.',
+      evidence: {
+        kind: 'regrading', caption: '적용 범위를 확인하며 넓힌 재채점',
+        stages: [
+          { title: '대상·preview', description: '2문항 · 33개 학교 · 175명' },
+          { title: '대표 2명', description: '저장 경로와 실제 결과 확인' },
+          { title: '전체 적용', description: '175명 재채점 후 전후 대조' },
+        ],
+        checks: [
+          { label: '수동점수', expected: '525건 보존', actual: '525건 보존' },
+          { label: '총점 증가', expected: '+844점', actual: '+844점' },
+          { label: '처리 실패', expected: '실패 여부 확인', actual: '0건' },
+        ],
+        note: '업무일지·사건보고의 작업 절차와 결과를 재구성했습니다. 새로 실행한 테스트나 시스템 전체의 정확성 수치는 아닙니다.',
+      },
       role: '채점 규칙 구현, 운영 재채점과 전후 결과 확인',
-      outcome: '175명 재채점 · 수동점수 525건 보존 · 예상·실제 총점 증가 844점 일치',
+      outcome: '수동점수 보존 확인 · 예상·실제 총점 증가 +844점 일치',
       limits: '당시 업무일지·사건보고 기준의 단일 운영 작업 결과입니다. 부분 실패 시 재개·rollback 절차와 preview 이후 동시 변경의 처리 방식은 현재 자료로 확인할 수 없습니다.',
       steps: [
         { label: '문제 · 자동점수만 다시 계산해야 했다', paragraphs: ['자동채점 불일치가 확인된 2개 문항에 대해 33개 학교·175명의 결과를 다시 계산해야 했습니다. 기존 수동채점 525건은 보존해야 했습니다.'] },
@@ -107,12 +137,30 @@ export const kice: Project = {
     },
     {
       id: 'kafka-order', navTitle: '답안 저장과 채점 순서',
-      title: '답안 저장 뒤에 채점을 발행하도록 흐름을 바꿨습니다',
+      title: '답안보다 먼저 끝나던 채점의 순서 개선',
       axis: 'Reliability',
-      summary: '같은 응시 건의 로그에서 채점이 답안 저장보다 먼저 끝나는 것을 확인했습니다. Topic·Key와 발행 시점을 함께 바꾸는 방안을 제안하고 구현·검증에 참여했습니다.',
+      summary: '같은 응시 건에서 채점이 답안 저장보다 먼저 끝나 0건 완료로 남았습니다.',
+      decision: '동일 Topic·응시 ID Key와 저장 후 발행을 함께 제안했습니다. Key를 맞추는 것만으로 처리 완료 순서를 보장할 수는 없습니다.',
+      verification: '답안 저장 이후 채점의 순서를 확인하고, partition 8개·동시 5,000명 조건의 부하검증에 참여했습니다.',
+      scope: '정상 흐름의 선후 관계를 확인했습니다. DB 커밋·발행 사이 장애와 Consumer 병렬 처리·중복·재처리 보장은 현재 자료로 확인할 수 없습니다.',
+      evidence: {
+        kind: 'sequence', caption: '동일 응시 건의 처리 순서',
+        before: [
+          { title: '응시 완료', description: '서로 다른 Topic으로 진행' },
+          { title: '채점 완료', description: '답안 0건으로 처리' },
+          { title: '답안 저장', description: '채점보다 뒤늦게 완료' },
+        ],
+        after: [
+          { title: '답안 저장', description: '저장 이후 다음 단계로' },
+          { title: '채점 발행', description: '동일 Topic · 응시 ID Key' },
+          { title: '채점 처리', description: '저장 이후 채점 확인' },
+        ],
+        beforeNote: '응시 ID별 로그에서 관측한 순서 역전',
+        afterNote: '제안·구현에 참여하고 확인한 정상 처리 흐름',
+        note: '로그 분석·개선 기록을 재구성한 설명도입니다. DB 커밋 시점과 발행 실패 시 복구 방식은 현재 자료에서 확인되지 않습니다.',
+      },
       role: '로그 분석·개선안 제안, 관리자 검토·승인 후 구현·검증 참여',
       outcome: '동일 응시 건의 답안 저장 이후 채점 이벤트를 발행하는 흐름으로 개선',
-      limits: '정상 흐름의 선후 관계를 확인한 사례입니다. DB 커밋·발행 사이 장애와 Consumer 병렬 처리·재처리까지의 보장 범위는 현재 자료로 확인할 수 없습니다.',
       steps: [
         { label: '관측 · 채점 완료 뒤에 답안이 저장됐다', paragraphs: ['응시 완료 후 채점 로그는 0건 완료로 남았지만, 같은 응시 건의 답안이 그 뒤 저장됐습니다. Grafana·구조화 로그에서 응시 ID별 처리 시점을 비교해 순서 역전을 좁혔습니다.'] },
         { label: '조사 · 서로 다른 Topic을 통과하고 있었다', paragraphs: ['답안·응시완료·채점 이벤트가 서로 다른 Topic을 통과했습니다. Kafka의 순서 보장은 partition 내부에 적용되므로, 서로 다른 Topic에 같은 응시 ID가 있다는 사실만으로 선후 관계를 기대할 수 없었습니다.'] },
@@ -126,6 +174,7 @@ export const kice: Project = {
       title: '기관별 차이와 변경 시점을 비교해 채점 장애를 복구했습니다',
       axis: 'Reliability',
       summary: '특정 기관에서만 정답 조회가 실패하는 현상을 캐시 초기화 변경과 연결해 조사하고, rollback으로 채점을 복구했습니다.',
+      decision: '기관·변경 시점·DB 조회 결과를 비교해 원인 후보를 좁히고, rollback으로 운영 영향을 먼저 차단했습니다.',
       role: '장애 분석·rollback 복구',
       outcome: 'rollback 후 채점 정상화 확인',
       limits: '캐시 초기화 범위와 DB fallback 전 예외는 당시 가설입니다. 최종 근본 원인은 현재 자료로 확인할 수 없습니다.',

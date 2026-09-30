@@ -1,10 +1,12 @@
 import type { EngineeringCase } from '../assets/data/types'
+import CaseEvidence from './CaseEvidence'
+import './CaseStudy.css'
 
 interface CaseStudyProps {
   item: EngineeringCase
   index: number
   href: string
-  expanded: boolean
+  active: boolean
 }
 
 const axisLabels = {
@@ -13,7 +15,7 @@ const axisLabels = {
   Reliability: '이벤트와 운영',
 }
 
-export default function CaseStudy({ item, index, href, expanded }: CaseStudyProps) {
+export default function CaseStudy({ item, index, href, active }: CaseStudyProps) {
   const body = (
     <>
       <ol className="case-steps">
@@ -36,6 +38,7 @@ export default function CaseStudy({ item, index, href, expanded }: CaseStudyProp
           {item.comparison.note && <p className="case-comparison__note">{item.comparison.note}</p>}
         </div>
       )}
+      {item.scope && item.limits && <div className="case-verification-scope"><h4>검증 범위와 남은 확인</h4><p>{item.limits}</p></div>}
       {(item.learning || item.future) && (
         <details className="case-reflection">
           <summary>판단의 기준과 회고</summary>
@@ -47,7 +50,7 @@ export default function CaseStudy({ item, index, href, expanded }: CaseStudyProp
   )
 
   return (
-    <article id={item.id} tabIndex={-1} className={`engineering-case${item.compact ? ' engineering-case--compact' : ''}`} aria-labelledby={`${item.id}-title`}>
+    <article id={item.id} tabIndex={-1} className={`engineering-case${item.compact ? ' engineering-case--compact' : ''}${active ? ' engineering-case--active' : ''}`} aria-labelledby={`${item.id}-title`}>
       <header className="engineering-case__header">
         <div className="engineering-case__meta">
           <span className="case-number">CASE {String(index + 1).padStart(2, '0')}</span>
@@ -55,17 +58,20 @@ export default function CaseStudy({ item, index, href, expanded }: CaseStudyProp
           {item.status && <span className="case-status">{item.status}</span>}
         </div>
         <h3 id={`${item.id}-title`}>{item.title}</h3>
-        <p className="engineering-case__summary">{item.summary}</p>
-        <p className="engineering-case__role"><strong>담당</strong><span>{item.role}</span></p>
       </header>
       <div className="case-result"><span>결과</span><p>{item.outcome}</p></div>
-      {item.limits && <p className="case-scope"><strong>확인 범위</strong>{item.limits}</p>}
-      {item.compact ? (
-        <details className="case-supporting" open={expanded || undefined}>
-          <summary>분석과 조치 자세히 읽기</summary>
-          {body}
-        </details>
-      ) : body}
+      {(item.scope || item.limits) && <p className="case-scope"><strong>결과의 범위</strong>{item.scope || item.limits}</p>}
+      <dl className="case-brief">
+        <div><dt>문제</dt><dd>{item.summary}</dd></div>
+        <div><dt>내 역할</dt><dd>{item.role}</dd></div>
+        {item.decision && <div><dt>핵심 판단</dt><dd>{item.decision}</dd></div>}
+        {item.verification && <div><dt>검증</dt><dd>{item.verification}</dd></div>}
+      </dl>
+      {item.evidence && <CaseEvidence evidence={item.evidence} />}
+      <details className="case-supporting">
+        <summary><span>구현 과정과 검증 기록</span><span className="case-supporting__hint" aria-hidden="true">펼쳐 읽기 +</span></summary>
+        {body}
+      </details>
       <footer className="case-footer">
         <a className="case-permalink" href={href}>사례 바로가기<span className="sr-only">: {item.title}</span><span aria-hidden="true">↗</span></a>
         {item.source && <a className="case-source" href={item.source.url} target="_blank" rel="noreferrer noopener">{item.source.title} <span aria-hidden="true">↗</span></a>}

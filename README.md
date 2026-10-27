@@ -100,9 +100,9 @@ npm run preview
 
 2026.09.05에 공개 쇼케이스와 본인 블로그를 대조했습니다. 공개된 설명·회고에 근거하며, 비공개 애플리케이션의 소스 감사나 테스트 재실행 결과로 표현하지 않습니다.
 
-- [CharaNest 쇼케이스](https://github.com/jungducknam/CharaNest-showcase): 8월 기준 로컬 우선 실행, 프로토타입·다운로드 미제공, 역할·권한·기억·품질 기준
+- [CharaNest 쇼케이스](https://github.com/arden-deq/CharaNest-showcase): 8월 기준 로컬 우선 실행, 프로토타입·다운로드 미제공, 역할·권한·기억·품질 기준
 - [5월 대화모델 회고](https://clsrn4561.tistory.com/30), [6월 대화 품질 검증](https://clsrn4561.tistory.com/31): 당시 검색 파이프라인 실험과 현재 기본 앱 경로를 구분
-- [K-Racing 쇼케이스](https://github.com/jungducknam/K-Racing-showcase), [기술 설계](https://github.com/jungducknam/K-Racing-showcase/blob/main/docs/TECHNICAL_NOTES.md), [8월 회고](https://clsrn4561.tistory.com/33): 초기 서버 권위 방식의 장애와 현재 호스트 Worker·WebRTC 구조를 구분. AI 도구 활용과 본인의 판단·검증 역할 명시
+- [K-Racing 쇼케이스](https://github.com/arden-deq/K-Racing-showcase), [기술 설계](https://github.com/arden-deq/K-Racing-showcase/blob/main/docs/TECHNICAL_NOTES.md), [8월 회고](https://clsrn4561.tistory.com/33): 초기 서버 권위 방식의 장애와 현재 호스트 Worker·WebRTC 구조를 구분. AI 도구 활용과 본인의 판단·검증 역할 명시
 - `public/projects/charanest-overlay.jpg`: CharaNest 쇼케이스의 `docs/screenshots/main-overlay.jpg`
 - `public/projects/k-racing-race.png`: K-Racing 쇼케이스의 `assets/k-racing-race.png`
 

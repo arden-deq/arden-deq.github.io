@@ -116,7 +116,7 @@ function App() {
             <Section id="contact" title="함께 일할 기회를 기다립니다" subtitle="Contact" intro="Java/Spring 백엔드에서 데이터와 운영의 정확성을 함께 고민하고 싶습니다.">
               <ul className="contact-list">
                 <li><span>이메일</span><a href={`mailto:${profile.contact.email}`}>{profile.contact.email}</a></li>
-                <li><span>GitHub</span><a href={profile.contact.github} target="_blank" rel="noreferrer noopener">jungducknam <span aria-hidden="true">↗</span></a></li>
+                <li><span>GitHub</span><a href={profile.contact.github} target="_blank" rel="noreferrer noopener">arden-deq <span aria-hidden="true">↗</span></a></li>
                 <li><span>기술 블로그</span><a href={profile.contact.blog} target="_blank" rel="noreferrer noopener">개발 기록 <span aria-hidden="true">↗</span></a></li>
               </ul>
             </Section>

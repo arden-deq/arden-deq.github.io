@@ -70,7 +70,7 @@ export const profile = {
   ] satisfies SkillCategory[],
   contact: {
     email: 'jdnam1996@gmail.com',
-    github: 'https://github.com/jungducknam',
+    github: 'https://github.com/arden-deq',
     blog: 'https://clsrn4561.tistory.com',
   },
 }

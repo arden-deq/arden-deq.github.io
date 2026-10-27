@@ -42,7 +42,7 @@ export default function ResumeDialog({ onClose }: { onClose: () => void }) {
         </section>
         <section aria-labelledby="resume-skills"><h3 id="resume-skills">기술과 활용</h3><dl>{profile.skills.map((item) => <div key={item.category}><dt>{item.category}</dt><dd>{item.items.join(' · ')}</dd></div>)}</dl></section>
         <section aria-labelledby="resume-education"><h3 id="resume-education">학력</h3>{profile.education.map((item) => <p key={item.title}>{item.title} · {item.subtitle} <span className="resume-document__scope">({item.period})</span></p>)}</section>
-        <footer>상세 구현과 검증 범위: <a href="https://jungducknam.github.io/">jungducknam.github.io</a></footer>
+        <footer>상세 구현과 검증 범위: <a href="https://arden-deq.github.io/">arden-deq.github.io</a></footer>
       </div>
     </dialog>, document.body,
   )

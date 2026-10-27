@@ -1,6 +1,6 @@
 import type { Project } from './types'
 
-const showcaseUrl = 'https://github.com/jungducknam/CharaNest-showcase'
+const showcaseUrl = 'https://github.com/arden-deq/CharaNest-showcase'
 const pipelinePost = 'https://clsrn4561.tistory.com/31'
 
 export const charanest: Project = {

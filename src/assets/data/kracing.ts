@@ -1,6 +1,6 @@
 import type { Project } from './types'
 
-const showcaseUrl = 'https://github.com/jungducknam/K-Racing-showcase'
+const showcaseUrl = 'https://github.com/arden-deq/K-Racing-showcase'
 const technicalUrl = showcaseUrl + '/blob/main/docs/TECHNICAL_NOTES.md'
 const retrospectiveUrl = 'https://clsrn4561.tistory.com/33'
 

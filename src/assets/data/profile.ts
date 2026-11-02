@@ -33,11 +33,11 @@ export const profile = {
   careerSummary: {
     asOf: '2026.11',
     total: '약 4년 3개월',
-    permanent: '2년 11개월',
-    freelance: '1년 4개월',
+    permanent: '3년',
+    freelance: '1년 3개월',
     current: '퓨쳐누리 · 프리랜서',
     scope: 'KICE 문항·시험지·채점 개발',
-    calculation: '2021.10~2024.09와 2025.07~2026.11의 월 차이를 합산했습니다. 일 단위는 미포함이며, 재직 중 프로젝트 기간은 중복 합산하지 않았습니다.',
+    calculation: '정규직 2021.10.01~2024.09.30(3년)과 프리랜서 2025.07 하순~2026.11(1년 3개월)을 합산했습니다. 재직 중 프로젝트 기간은 중복 합산하지 않았습니다.',
   },
   projects: [kice, futurenuri, ntcn],
   explorations: [charanest, kracing],
@@ -46,7 +46,7 @@ export const profile = {
     {
       period: '2021.10~2024.09',
       title: '퓨쳐누리',
-      subtitle: '정규직 · Java Backend Engineer · 2년 11개월',
+      subtitle: '정규직 · Java Backend Engineer · 3년',
       points: [
         '문제은행·온라인 시험·수련관리 시스템을 개발·운영하며 DB·서버·파일 장애를 분석·복구했습니다.',
         '재직 중 NTCN의 MSA 기반 SaaS 전환에서 문제은행(QST) 트랙을 맡아 화면-API 전환 매핑표를 작성하고, 문항·시험지·검수 API 전환과 안정화에 참여했습니다.',

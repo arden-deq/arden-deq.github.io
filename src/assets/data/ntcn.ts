@@ -7,7 +7,7 @@ export const ntcn: Project = {
   role: 'Java Backend Engineer',
   period: '2023년 · 전환·안정화',
   employment: { company: '퓨쳐누리', type: '정규직' },
-  tech: ['Java', 'REST API', 'MSA', 'PostgreSQL', 'MSSQL'],
+  tech: ['Java', 'REST API', 'MSA', 'PostgreSQL', 'MSSQL', 'JMeter'],
   featuredTech: ['Java', 'REST API', 'MSA', 'PostgreSQL', 'MSSQL'],
   summary: '사내 첫 MSA 클라우드 SaaS 전환에서 문제은행(QST) 트랙을 맡아, 기존 화면 호출과 신규 REST API를 잇는 전환 매핑표를 작성하고 문항·시험지·검수 API 전환과 DB 전환 후 안정화에 참여했습니다.',
   focus: '레거시 → QST REST API · 논리삭제 · 집계 기준 · 부모-자식 저장',
@@ -23,11 +23,12 @@ export const ntcn: Project = {
       { title: 'REST API 계약', description: 'HTTP method · versioned URI · 쿼리 전환', contribution: 'QST 호출·데이터 계약 전환 참여' },
       { title: '서비스 경계', description: 'QST 문항·시험지 / APLY 응시 / SYS 공통', contribution: 'QST 문항·시험지·검수 안정화' },
     ],
-    environment: '프로젝트 환경: MSSQL → PostgreSQL, tenant schema 기반 분리, Zuul·Eureka·JWT/Spring Security·Redis·Docker/Registry·Kubernetes/PaaS. 기관별 DB를 분리하는 현재 KICE 구조와 다릅니다.',
+    environment: '프로젝트 환경: MSSQL → PostgreSQL, tenant schema 기반 분리, Zuul·Eureka·JWT/Spring Security·Redis·Docker/Registry·Kubernetes/PaaS.',
   },
   contributions: [
     { title: 'QST 기능의 API 전환', description: '문제은행·문항·시험지·검수 담당으로 기존 호출과 신규 HTTP method·버전 URI·서비스 책임을 연결하는 전환 개발과 매핑에 참여했습니다.' },
     { title: '데이터 의미의 보존과 안정화', description: '자동 문항 추출의 삭제 상태, 정답률의 집계 범위, 일괄 등록의 부모·자식 데이터, 시험지 배분·순서 문제의 분석·조치에 참여했습니다.' },
+    { title: '성능 시험 대비', description: '시험절차서의 성능 기준(동시접속 10,000·평균 4,500 TPS·응답 3초) 작성·검증에 참여했습니다. 외부 업체 성능 시험 전에 JMeter로 사전 점검했고, 외부 업체 시험은 통과했습니다.' },
   ],
   cases: [
     {

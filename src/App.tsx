@@ -65,7 +65,7 @@ function App() {
               <FeaturedCases />
             </Section>
 
-            <Section id="experience" title="경력과 프로젝트" intro={`퓨쳐누리에서 정규직(2021.10~2024.09)으로 일한 뒤 Chrome 확장 Keep Your Focus를 만들어 배포했고(2025.01~02), 2025.07부터 프리랜서로 평가원 신규 플랫폼을 개발하고 있습니다. 총 실무경력 ${profile.careerSummary.total}, ${profile.careerSummary.asOf} 기준입니다.`}>
+            <Section id="experience" title="경력과 프로젝트" intro={`퓨쳐누리에서 정규직(2021.10~2024.09)으로 일한 뒤 Chrome 확장 Keep Your Focus를 만들어 배포했고(2025.01~02), 2025.07부터는 퓨쳐누리 시절 팀장이던 현 PL의 요청으로 프리랜서로 합류해 평가원 신규 플랫폼을 개발하고 있습니다. 총 실무경력 ${profile.careerSummary.total}, ${profile.careerSummary.asOf} 기준입니다.`}>
               <Experience />
             </Section>
 

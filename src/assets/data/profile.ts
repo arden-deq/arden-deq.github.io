@@ -28,16 +28,16 @@ export const profile = {
     name: '남정덕',
     title: 'Backend Engineer · Java / Spring',
     headline: '운영 문제를 끝까지 추적하고,\n데이터의 의미를 지킵니다.',
-    summary: '문항·시험지·채점 API를 개발하고, 저장 계약·SQL 병목·이벤트 순서를 바로잡는 Java/Spring 백엔드 개발자입니다.',
+    summary: '문항·시험지·채점 API를 개발하고, SQL 병목과 채점 오류를 데이터로 대조해 바로잡는 Java/Spring 백엔드 개발자입니다.',
   },
   careerSummary: {
-    asOf: '2026.09',
-    total: '약 4년 1개월',
+    asOf: '2026.11',
+    total: '약 4년 3개월',
     permanent: '2년 11개월',
-    freelance: '1년 2개월',
+    freelance: '1년 4개월',
     current: '퓨쳐누리 · 프리랜서',
     scope: 'KICE 문항·시험지·채점 개발',
-    calculation: '2021.10~2024.09와 2025.07~2026.09의 월 차이를 합산했습니다. 일 단위는 미포함이며, 재직 중 프로젝트 기간은 중복 합산하지 않았습니다.',
+    calculation: '2021.10~2024.09와 2025.07~2026.11의 월 차이를 합산했습니다. 일 단위는 미포함이며, 재직 중 프로젝트 기간은 중복 합산하지 않았습니다.',
   },
   projects: [kice, futurenuri, ntcn],
   explorations: [charanest, kracing],
@@ -49,7 +49,8 @@ export const profile = {
       subtitle: '정규직 · Java Backend Engineer · 2년 11개월',
       points: [
         '문제은행·온라인 시험·수련관리 시스템을 개발·운영하며 DB·서버·파일 장애를 분석·복구했습니다.',
-        '재직 중 NTCN의 MSA 기반 SaaS 전환에 참여해 QST 문항·시험지·검수 API를 개발하고 데이터 정합성을 보완했습니다.',
+        '재직 중 NTCN의 MSA 기반 SaaS 전환에서 문제은행(QST) 트랙을 맡아 화면-API 전환 매핑표를 작성하고, 문항·시험지·검수 API 전환과 안정화에 참여했습니다.',
+        '재직 중 타 팀 요청으로 한국교육과정평가원 학업성취도 자율평가 이전 시스템에 투입돼 장학사 통계 화면과 인력풀 API 연계를 개발했습니다.',
       ],
     },
     {
@@ -61,6 +62,7 @@ export const profile = {
   ],
   education: [
     { period: '2015.03~2021.02', title: '계명대학교', subtitle: '문헌정보학 학사' },
+    { period: '2021', title: '한국IT교육원', subtitle: 'Java 과정 수료' },
   ],
   skills: [
     { category: '도메인과 API 구현', items: ['Java 17', 'Spring Boot', 'MyBatis', 'OpenFeign'], context: '문항·시험지 API, 유형별 저장과 변환, 서비스 간 호출을 구현했습니다.', href: '#/project/kice/excel-contract' },
@@ -79,7 +81,7 @@ export const scorecard = [
   { value: '99.6', unit: '%', label: '핵심 SQL 실행시간 단축', basis: '93,051ms → 382ms · 핵심 SQL 1건 기준', href: '#/project/neotest-maintenance/database-bottleneck' },
   { value: '525', unit: '건', label: '재채점 중 수동점수 보존', basis: '175명 재채점 · 실패 0건', href: '#/project/kice/safe-regrading' },
   { value: '314', unit: '건+', label: '운영 요청 처리', basis: '15개 기관 · 16개 시스템', href: '#/project/neotest-maintenance' },
-  { value: '4', unit: '년 1개월', label: '총 실무경력', basis: '2026.09 기준 · 정규직과 프리랜서 합산', href: '#experience' },
+  { value: '4', unit: '년 3개월', label: '총 실무경력', basis: '2026.11 기준 · 정규직과 프리랜서 합산', href: '#experience' },
 ] as const
 
 export const featuredCases = [
@@ -90,10 +92,10 @@ export const featuredCases = [
     description: 'DB CPU 100%의 원인을 실제 JOIN 조건으로 좁혀 인덱스를 설계하고, 주변 쿼리까지 전후를 비교했습니다.',
   },
   {
-    project: kice, caseId: 'kafka-order', visual: 'sequence',
-    tag: '이벤트 순서', metric: '저장 → 채점', metricNote: '정상 흐름의 선후 관계 확인',
-    title: '답안 저장보다 먼저 끝나던 채점의 순서를 바로잡았습니다',
-    description: '응시 ID별 로그로 순서 역전을 찾고, 동일 Topic·Key와 저장 후 발행을 제안해 구현·검증에 참여했습니다.',
+    project: kice, caseId: 'hotspot-preview', visual: 'checks',
+    tag: '반영 전 검증', metric: '1,446 / 1,446', metricNote: '자동판정 예상값 일치 · 미리보기 API · 점수 저장 없음',
+    title: '채점 기준을 고친 뒤, 운영 답안 1,447건을 반영 전에 대조했습니다',
+    description: '단위 테스트 밖의 실제 요청 반례로 결함을 찾아 보완하고, 저장된 답안 전체를 새 기준으로 먼저 판정했습니다.',
   },
   {
     project: kice, caseId: 'safe-regrading', visual: 'checks',

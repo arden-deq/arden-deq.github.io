@@ -9,11 +9,11 @@ export const ntcn: Project = {
   employment: { company: '퓨쳐누리', type: '정규직' },
   tech: ['Java', 'REST API', 'MSA', 'PostgreSQL', 'MSSQL'],
   featuredTech: ['Java', 'REST API', 'MSA', 'PostgreSQL', 'MSSQL'],
-  summary: '사내 문제은행의 MSA 기반 클라우드 SaaS 전환에서 QST 문항·시험지·검수 API 개발에 참여했습니다. 기존 화면·호출과 신규 계약을 연결하고, DB 전환 과정의 문항 추출·등록 안정화에 참여했습니다.',
+  summary: '사내 첫 MSA 클라우드 SaaS 전환에서 문제은행(QST) 트랙을 맡아, 기존 화면 호출과 신규 REST API를 잇는 전환 매핑표를 작성하고 문항·시험지·검수 API 전환과 DB 전환 후 안정화에 참여했습니다.',
   focus: '레거시 → QST REST API · 논리삭제 · 집계 기준 · 부모-자식 저장',
   responsibility: 'QST 문항·시험지·검수 API 전환과 정합성 조치에 참여했습니다. 후속 점검 결과는 별도 점검자의 기록으로 확인했습니다.',
   context: [
-    '퓨쳐누리 사내 최초 MSA 프로젝트이자 첫 클라우드 성공 전환 사례입니다. 레거시 화면·Controller 중심 기능을 QST·APLY·SYS 경계와 신규 REST API로 옮기는 맥락에서 문제은행 트랙을 담당했습니다.',
+    '퓨쳐누리 사내 첫 MSA·클라우드 SaaS 전환 프로젝트입니다. 레거시 화면·Controller 중심 기능을 QST·APLY·SYS 경계와 신규 REST API로 옮기는 맥락에서 문제은행 트랙을 담당했습니다.',
     'QST의 문항관리·시험지관리·검수를 담당했습니다. 아래 내용은 전환 매핑표와 수정 체크리스트를 바탕으로 정리했으며, 당시 핵심 소스·Git이 없어 구현 세부를 설명할 수 있는 범위는 제한적입니다.',
   ],
   flow: {

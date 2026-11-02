@@ -61,15 +61,15 @@ function App() {
           <>
             <Hero />
 
-            <Section id="cases" title="대표 사례" intro="병목은 조회 조건으로 좁히고, 이벤트는 순서를 맞추고, 수동점수는 지켰습니다.">
+            <Section id="cases" title="대표 사례" intro="병목은 조회 조건으로 좁히고, 채점 변경은 반영 전에 대조하고, 수동점수는 지켰습니다.">
               <FeaturedCases />
             </Section>
 
-            <Section id="experience" title="경력과 프로젝트" intro={`퓨쳐누리에서 정규직과 프리랜서로 일했습니다. 총 실무경력 ${profile.careerSummary.total}, ${profile.careerSummary.asOf} 기준입니다.`}>
+            <Section id="experience" title="경력과 프로젝트" intro={`퓨쳐누리에서 정규직(2021.10~2024.09)으로 일한 뒤 Chrome 확장 Keep Your Focus를 만들어 배포했고(2025.01~02), 2025.07부터 프리랜서로 평가원 신규 플랫폼을 개발하고 있습니다. 총 실무경력 ${profile.careerSummary.total}, ${profile.careerSummary.asOf} 기준입니다.`}>
               <Experience />
             </Section>
 
-            <Section id="lab" title="개인 프로젝트" intro="로컬 AI의 대화 품질과 실시간 게임의 조작감을 직접 정의하고, 동작하는 제품으로 만들었습니다.">
+            <Section id="lab" title="개인 프로젝트" intro="로컬 AI의 대화 품질과 실시간 게임의 조작감을 직접 정의했습니다. K-Racing은 웹에 공개했고, CharaNest는 품질 기준을 넘지 못해 출시를 보류한 프로토타입입니다.">
               <div className="lab-list">
                 {profile.explorations.map((project) => <ExplorationCard key={project.slug} project={project} />)}
               </div>

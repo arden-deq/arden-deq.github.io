@@ -1,39 +1,50 @@
 import { useState } from 'react'
-import { profile } from '../assets/data/profile'
+import { profile, scorecard } from '../assets/data/profile'
 import ResumeDialog from './ResumeDialog'
 import './Hero.css'
 
+function CheckMark({ delay }: { delay: number }) {
+  return (
+    <svg className="score__check" style={{ animationDelay: `${delay}ms` }} aria-hidden="true" viewBox="0 0 32 32" fill="none" stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
+      <path pathLength="1" d="M5 17.5 12.5 25 27 7" />
+    </svg>
+  )
+}
+
 export default function Hero() {
   const [resumeOpen, setResumeOpen] = useState(false)
-  const career = profile.careerSummary
   return (
-    <section id="profile" className="section hero-section" tabIndex={-1} aria-labelledby="profile-title">
-      <div className="hero">
-        <div className="hero__content">
-          <p className="hero__identity"><strong>{profile.hero.name}</strong><span>{profile.hero.title}</span></p>
-          <h1 id="profile-title" className="hero__title">{profile.hero.headline}</h1>
-          <p className="hero__lead">{profile.hero.summary}</p>
-          <ul className="hero-strengths" aria-label="핵심 역량">
-            <li><a href="#/project/neotest-maintenance/database-bottleneck">SQL 병목 분석 <span aria-hidden="true">↗</span></a></li>
-            <li><a href="#/project/kice/kafka-order">이벤트 순서 <span aria-hidden="true">↗</span></a></li>
-            <li><a href="#/project/kice/safe-regrading">데이터 정합성 <span aria-hidden="true">↗</span></a></li>
-          </ul>
-          <div className="hero__cta">
-            <a className="button" href="#cases">대표 사례 보기 <span aria-hidden="true">↓</span></a>
-            <button type="button" className="button button--ghost" onClick={() => setResumeOpen(true)}>이력서 보기 <span aria-hidden="true">↗</span></button>
-          </div>
+    <section id="profile" className="hero" tabIndex={-1} aria-labelledby="profile-title">
+      <div className="hero__head">
+        <div className="hero__identity">
+          <img src={`${import.meta.env.BASE_URL}jdnam4.jpg`} alt="" width="48" height="64" fetchPriority="high" />
+          <p><strong>{profile.hero.name}</strong><span>Java/Spring 백엔드 개발자</span></p>
         </div>
-        <aside className="career-snapshot" aria-label="경력과 현재 역할 요약">
-          <div className="career-snapshot__identity">
-            <div><p className="eyebrow">At a glance</p><p className="career-snapshot__job">Java / Spring<br />Backend Engineer</p></div>
-            <img src={`${import.meta.env.BASE_URL}jdnam4.jpg`} alt="남정덕" width="60" height="80" fetchPriority="high" />
-          </div>
-          <div className="career-snapshot__total"><span>총 실무경력</span><strong>{career.total}</strong></div>
-          <p className="career-snapshot__breakdown">정규직 {career.permanent} + 프리랜서 {career.freelance}</p>
-          <div className="career-snapshot__current"><span>현재 역할</span><strong>{career.current}</strong><p>{career.scope}</p></div>
-          <a className="career-snapshot__basis" href="#career">{career.asOf} 기준 · 산정 범위 보기 <span aria-hidden="true">↓</span></a>
-        </aside>
+        <h1 id="profile-title" className="hero__title">{profile.hero.headline}</h1>
       </div>
+      <div className="hero__intro">
+        <p className="hero__lead">{profile.hero.summary}</p>
+        <div className="hero__actions">
+          <button type="button" className="button" onClick={() => setResumeOpen(true)}>이력서 보기</button>
+          <a className="button button--quiet" href={`mailto:${profile.contact.email}`}>메일 보내기</a>
+          <a className="hero__link" href={profile.contact.github} target="_blank" rel="noreferrer noopener">GitHub</a>
+        </div>
+      </div>
+
+      <ol className="scorecard" aria-label="주요 성과">
+        {scorecard.map((item, index) => (
+          <li key={item.label} className="score">
+            <a href={item.href}>
+              <span className="score__value num">{item.value}<small>{item.unit}</small></span>
+              <span className="score__text">
+                <strong>{item.label}</strong>
+                <span>{item.basis}</span>
+              </span>
+              <CheckMark delay={300 + index * 160} />
+            </a>
+          </li>
+        ))}
+      </ol>
       {resumeOpen && <ResumeDialog onClose={() => setResumeOpen(false)} />}
     </section>
   )

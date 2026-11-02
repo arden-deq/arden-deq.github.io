@@ -1,21 +1,71 @@
+/* Design tokens — see DESIGN.md. Colors follow color-scheme, so the header toggle only swaps the <meta>. */
 :root {
-  font-family: 'Pretendard', 'SUIT', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  line-height: 1.6;
+  color-scheme: light dark;
+  &:has(> head > meta[name="color-scheme"][content="dark"]) { color-scheme: dark; }
+  &:has(> head > meta[name="color-scheme"][content="light"]) { color-scheme: light; }
+
+  --paper: light-dark(#F4F5F1, #141516);
+  --sheet: light-dark(#FFFFFF, #1C1D1F);
+  --ink: light-dark(#1A1A1A, #ECECE8);
+  --graphite: light-dark(#5B5F66, #A0A3A8);
+  --rule: light-dark(#D9DBD4, #2F3133);
+  --rule-strong: light-dark(#1A1A1A, #ECECE8);
+  --mark: light-dark(#C8211A, #FF6B5E);
+  --mark-wash: light-dark(#FBE9E7, #3A1F1C);
+
+  --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
+  --text-display: clamp(2.25rem, 1.4rem + 3.6vw, 4rem);
+  --text-h2: clamp(1.6rem, 1.2rem + 1.6vw, 2.25rem);
+  --text-h3: 1.25rem;
+  --text-body: 1.0625rem;
+  --text-small: 0.9375rem;
+  --text-caption: 0.8125rem;
+
+  --page-max: 1120px;
+  --gutter: clamp(20px, 5vw, 48px);
+  --measure: 40em;
+
+  font-family: var(--font);
+  font-size: 100%;
+  line-height: 1.75;
   font-weight: 400;
-  text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  color-scheme: light;
+  text-rendering: optimizeLegibility;
+  accent-color: var(--mark);
 }
 
-* {
-  box-sizing: border-box;
-}
+*, *::before, *::after { box-sizing: border-box; }
 
 body {
   margin: 0;
   min-height: 100vh;
+  background: var(--paper);
+  color: var(--ink);
+  font-size: var(--text-body);
+  /* Korean: keep eojeol intact, break only when a single token cannot fit. */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
-button {
-  font-family: inherit;
+h1, h2, h3, h4, figcaption, caption, th { text-wrap: balance; }
+p, li, dd { text-wrap: pretty; }
+h1, h2, h3, h4 { margin: 0; line-height: 1.3; font-weight: 700; letter-spacing: -0.02em; }
+p { margin: 0; }
+
+a { color: inherit; text-decoration-thickness: 1px; text-underline-offset: 0.22em; }
+a:hover { text-decoration-color: var(--mark); }
+
+button { font: inherit; color: inherit; }
+
+:focus-visible { outline: 2px solid var(--mark); outline-offset: 3px; }
+
+.num { font-variant-numeric: tabular-nums; }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
+  overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
+}
+
+@media (max-width: 640px) {
+  body { font-size: 1rem; }
 }

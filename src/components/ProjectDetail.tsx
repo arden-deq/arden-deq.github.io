@@ -39,17 +39,17 @@ export default function ProjectDetail({ project, section, backHref }: ProjectDet
       <div className="detail-mobile-toc">
         <button type="button" aria-expanded={mobileTocOpen} aria-controls="mobile-toc-content"
           onClick={() => setMobileTocOpen((value) => !value)}>
-          목차 · {project.shortName}
-          <span aria-hidden="true">{mobileTocOpen ? '−' : '+'}</span>
+          {project.shortName} 목차
+          <span aria-hidden="true">{mobileTocOpen ? '닫기' : '열기'}</span>
         </button>
         <nav id="mobile-toc-content" hidden={!mobileTocOpen} aria-label="이 페이지 목차">{tocLinks}</nav>
       </div>
       <div className="detail-layout">
         <aside className="detail-sidebar">
           <nav className="detail-toc" aria-label="이 페이지 목차">
-            <p className="eyebrow">{project.shortName}</p>
+            <p className="detail-toc__title">{project.shortName}</p>
             {tocLinks}
-            <a className="detail__back" href={backHref}>← 포트폴리오로</a>
+            <a className="detail-toc__back" href={backHref}>포트폴리오로 돌아가기</a>
           </nav>
         </aside>
         <div className="detail-content">
@@ -58,44 +58,41 @@ export default function ProjectDetail({ project, section, backHref }: ProjectDet
           )}
           <section id="project-overview" tabIndex={-1} className="detail__block" aria-labelledby="project-title">
             <header className="detail__header">
-              <p className="eyebrow">{project.period}</p>
-              {project.employment && <p className="detail__employment">{project.employment.company} · {project.employment.type}</p>}
+              <p className="detail__meta">{project.employment ? `${project.employment.company} ${project.employment.type}, ` : ''}{project.period}</p>
               <h1 id="project-title" className="detail__title">{project.name}</h1>
-              <p className="detail__role">{project.role}</p>
               <p className="detail__tagline">{project.summary}</p>
-              {project.responsibility && <p className="detail__responsibility"><strong>책임·협업 범위</strong>{project.responsibility}</p>}
-              <div className="detail__tech" aria-label="사용 기술과 아키텍처">
-                {project.tech.map((stack) => <span key={stack} className="chip">{stack}</span>)}
-              </div>
             </header>
+            <dl className="detail__facts">
+              <div><dt>역할</dt><dd>{project.role}</dd></div>
+              {project.responsibility && <div><dt>책임 범위</dt><dd>{project.responsibility}</dd></div>}
+              <div><dt>기술</dt><dd>{project.tech.join(', ')}</dd></div>
+            </dl>
             {project.showcase && (
               <figure className="detail-cover">
                 <img src={`${import.meta.env.BASE_URL}${project.showcase.image}`} alt={project.showcase.imageAlt} width="1280" height="720" decoding="async" />
-                <figcaption><span>{project.showcase.status}</span>{project.showcase.caption}</figcaption>
+                <figcaption>{project.showcase.status}. {project.showcase.caption}</figcaption>
               </figure>
             )}
-            {project.cases.length > 0 && <nav className="project-case-index" aria-label="이 프로젝트의 문제 해결 사례">{project.cases.map((item) => <a key={item.id} href={href(item.id)}>{item.navTitle || item.title}<span aria-hidden="true">↓</span></a>)}</nav>}
-            <details className="project-background">
+            {project.cases.length > 0 && <nav className="project-case-index" aria-label="이 프로젝트의 문제 해결 사례">{project.cases.map((item) => <a key={item.id} href={href(item.id)}>{item.navTitle || item.title}<span>{item.status || '사례'}</span></a>)}</nav>}
+            <details className="disclosure">
               <summary>프로젝트 배경과 공통 범위</summary>
               {project.context.map((paragraph) => <p key={paragraph} className="detail__paragraph">{paragraph}</p>)}
             </details>
             {project.links && (
               <div className="detail__links">
-                {project.links.map((link) => <a key={link.title} href={link.url} target="_blank" rel="noreferrer noopener">{link.title} ↗</a>)}
+                {project.links.map((link) => <a key={link.title} href={link.url} target="_blank" rel="noreferrer noopener">{link.title}</a>)}
               </div>
             )}
           </section>
 
           {project.flow && (
             <section id="architecture" tabIndex={-1} className="detail__block" aria-labelledby="architecture-title">
-              <p className="eyebrow">Architecture / Data flow</p>
               <h2 id="architecture-title" className="detail__block-title">시스템의 흐름과 개인 기여</h2>
               <ProjectDiagram flow={project.flow} />
             </section>
           )}
 
           <section id="contributions" tabIndex={-1} className="detail__block" aria-labelledby="contributions-title">
-            <p className="eyebrow">My contribution</p>
             <h2 id="contributions-title" className="detail__block-title">직접 수행한 기여</h2>
             <div className="contribution-list">
               {project.contributions.map((item) => (
@@ -107,9 +104,8 @@ export default function ProjectDetail({ project, section, backHref }: ProjectDet
           {project.cases.length > 0 && (
             <section aria-labelledby="challenges-title">
               <header className="case-section-header">
-                <p className="eyebrow">Engineering challenges</p>
                 <h2 id="challenges-title" className="detail__block-title">구현과 문제 해결</h2>
-                <p>문제를 정의하고, 변경 범위를 정하고, 결과를 확인한 과정입니다.</p>
+                <p className="detail__lead">각 사례는 결과와 판단을 먼저 보여주고, 구현 과정은 접어 두었습니다.</p>
               </header>
               {project.cases.map((item, index) => (
                 <CaseStudy key={item.id} item={item} index={index} href={href(item.id)} active={section === item.id} />
@@ -127,12 +123,11 @@ export default function ProjectDetail({ project, section, backHref }: ProjectDet
           )}
           {!!project.writings?.length && (
             <section id="dev-notes" tabIndex={-1} className="detail__block" aria-labelledby="dev-notes-title">
-              <p className="eyebrow">Behind the build</p>
               <h2 id="dev-notes-title" className="detail__block-title">판단이 바뀐 순간을 기록했습니다</h2>
               <div className="dev-notes">
                 {project.writings.map((post) => (
                   <a className="dev-note" key={post.url} href={post.url} target="_blank" rel="noreferrer noopener">
-                    <span className="dev-note__date">{post.date} · Development journal <span aria-hidden="true">↗</span></span>
+                    <span className="dev-note__date num">{post.date} 블로그 회고</span>
                     <h3>{post.title}</h3>
                     <p>{post.summary}</p>
                   </a>
@@ -141,9 +136,8 @@ export default function ProjectDetail({ project, section, backHref }: ProjectDet
             </section>
           )}
           <div className="detail-end">
-            <p>다른 문제 해결 과정도 살펴보세요.</p>
-            <a className="button button--ghost" href={backHref}>← 목록의 읽던 위치로</a>
-            <a href={href('project-overview')}>프로젝트 처음으로 ↑</a>
+            <a className="button" href={backHref}>읽던 위치로 돌아가기</a>
+            <a href={href('project-overview')}>이 프로젝트 처음으로</a>
           </div>
         </div>
       </div>

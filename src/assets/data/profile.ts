@@ -75,26 +75,30 @@ export const profile = {
   },
 }
 
+export const scorecard = [
+  { value: '99.6', unit: '%', label: '핵심 SQL 실행시간 단축', basis: '93,051ms → 382ms · 핵심 SQL 1건 기준', href: '#/project/neotest-maintenance/database-bottleneck' },
+  { value: '525', unit: '건', label: '재채점 중 수동점수 보존', basis: '175명 재채점 · 실패 0건', href: '#/project/kice/safe-regrading' },
+  { value: '314', unit: '건+', label: '운영 요청 처리', basis: '15개 기관 · 16개 시스템', href: '#/project/neotest-maintenance' },
+  { value: '4', unit: '년 1개월', label: '총 실무경력', basis: '2026.09 기준 · 정규직과 프리랜서 합산', href: '#experience' },
+] as const
+
 export const featuredCases = [
   {
-    project: futurenuri, caseId: 'database-bottleneck', axis: 'Performance',
-    context: '실무',
-    label: 'DB 병목', headline: '93,051 → 382ms', title: '핵심 SQL의 실행시간 단축',
-    description: '3,062만 건 테이블의 JOIN 조건을 조사해 복합 인덱스를 적용했습니다. 핵심 SQL의 전후 실행시간을 비교했습니다.',
-    scope: '핵심 SQL 1건 · 전후 기록',
+    project: futurenuri, caseId: 'database-bottleneck', visual: 'timing',
+    tag: '성능', metric: '382ms', metricNote: '93,051ms에서 단축 · 핵심 SQL 1건의 전후 기록',
+    title: '3,062만 건 테이블의 조회 병목을 복합 인덱스로 풀었습니다',
+    description: 'DB CPU 100%의 원인을 실제 JOIN 조건으로 좁혀 인덱스를 설계하고, 주변 쿼리까지 전후를 비교했습니다.',
   },
   {
-    project: kice, caseId: 'kafka-order', axis: 'Reliability',
-    context: '실무',
-    label: 'Kafka 순서', headline: '저장 먼저, 채점 다음', title: '답안보다 먼저 끝나던 채점',
-    description: '이벤트 순서 역전을 로그로 추적했습니다. 동일 Topic·Key와 저장 후 발행을 제안하고 구현·검증에 참여했습니다.',
-    scope: '정상 흐름의 선후 관계 확인',
+    project: kice, caseId: 'kafka-order', visual: 'sequence',
+    tag: '이벤트 순서', metric: '저장 → 채점', metricNote: '정상 흐름의 선후 관계 확인',
+    title: '답안 저장보다 먼저 끝나던 채점의 순서를 바로잡았습니다',
+    description: '응시 ID별 로그로 순서 역전을 찾고, 동일 Topic·Key와 저장 후 발행을 제안해 구현·검증에 참여했습니다.',
   },
   {
-    project: kice, caseId: 'safe-regrading', axis: 'Correctness',
-    context: '실무',
-    label: '안전한 재채점', headline: '175명 · 525건 보존', title: '수동점수를 보존하는 재채점',
-    description: '대표 2명 선실행 후 전체 대상으로 확대했습니다. 수동점수 보존과 예상·실제 총점 변화를 각각 대조했습니다.',
-    scope: '단일 운영 작업 · 업무일지 기준',
+    project: kice, caseId: 'safe-regrading', visual: 'checks',
+    tag: '데이터 정합성', metric: '525 / 525', metricNote: '수동점수 보존 · 총점 +844 예상과 일치',
+    title: '수동점수를 지키면서 175명을 재채점했습니다',
+    description: '바꿀 점수와 지킬 점수를 나누고, 전체 preview와 대표 2명 선실행으로 범위를 확인한 뒤 확대했습니다.',
   },
 ] as const

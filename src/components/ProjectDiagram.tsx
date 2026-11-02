@@ -4,7 +4,6 @@ export default function ProjectDiagram({ flow }: { flow: ProjectFlow }) {
   return (
     <figure className="project-flow">
       <figcaption>{flow.summary}</figcaption>
-      <div className="flow-legend"><span className="flow-legend__dot" aria-hidden="true" />파란 영역: 개인 기여<span>회색 영역: 업무·시스템 맥락</span></div>
       <ol className="flow-nodes">
         {flow.nodes.map((node) => (
           <li className="flow-node" key={node.title}>
@@ -13,7 +12,7 @@ export default function ProjectDiagram({ flow }: { flow: ProjectFlow }) {
           </li>
         ))}
       </ol>
-      <p className="flow-environment"><strong>프로젝트 환경</strong>{flow.environment}</p>
+      <p className="flow-environment"><strong>환경</strong>{flow.environment}</p>
     </figure>
   )
 }

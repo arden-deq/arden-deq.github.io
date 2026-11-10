@@ -27,7 +27,7 @@ export const profile = {
   hero: {
     name: '남정덕',
     title: 'Backend Engineer · Java / Spring',
-    headline: '운영 문제를 끝까지 추적하고,\n데이터의 의미를 지킵니다.',
+    headline: '운영 데이터를 바꾸기 전에,\n바뀔 결과부터 맞춰 봅니다.',
     summary: '문항·시험지·채점 API를 개발하고, SQL 병목과 채점 오류를 데이터로 대조해 바로잡는 Java/Spring 백엔드 개발자입니다.',
   },
   careerSummary: {
@@ -40,7 +40,7 @@ export const profile = {
     calculation: '정규직 2021.10.01~2024.09.30(3년)과 프리랜서 2025.07 하순~2026.11(1년 3개월)을 합산했습니다. 재직 중 프로젝트 기간은 중복 합산하지 않았습니다.',
   },
   projects: [kice, futurenuri, ntcn],
-  explorations: [charanest, kracing],
+  explorations: [kracing, charanest],
   sideProject,
   career: [
     {
@@ -79,9 +79,18 @@ export const profile = {
 
 export const scorecard = [
   { value: '99.6', unit: '%', label: '핵심 SQL 실행시간 단축', basis: '93,051ms → 382ms · 핵심 SQL 1건 기준', href: '#/project/neotest-maintenance/database-bottleneck' },
+  { value: '1,446', unit: '건', label: '반영 전 판정이 예상값과 일치', basis: '운영 답안 1,447건 대조 · 수동점수 1건 제외', href: '#/project/kice/hotspot-preview' },
   { value: '525', unit: '건', label: '재채점 중 수동점수 보존', basis: '175명 재채점 · 실패 0건', href: '#/project/kice/safe-regrading' },
-  { value: '314', unit: '건+', label: '운영 요청 처리', basis: '15개 기관 · 16개 시스템', href: '#/project/neotest-maintenance' },
-  { value: '4', unit: '년 3개월', label: '총 실무경력', basis: '2026.11 기준 · 정규직과 프리랜서 합산', href: '#experience' },
+  { value: '16', unit: '개', label: '시스템 개발·운영', basis: '15개 기관 · 운영 요청 314건+ 처리', href: '#/project/neotest-maintenance' },
+] as const
+
+// 홈의 대표 사례 아래에 한 줄씩 보여주는 사례. 수치의 범위는 각 상세의 기록을 그대로 따릅니다.
+export const moreCases = [
+  { tag: '이벤트 순서', title: '답안 저장보다 먼저 끝나던 채점의 순서 개선', note: 'Kafka 동일 Topic·응시 ID Key와 저장 후 발행을 제안하고 담당 서비스에 적용', href: '#/project/kice/kafka-order' },
+  { tag: '조회 성능', title: '분류트리 조회에서 DB가 읽는 행 약 82% 감소', note: '45,947행 → 8,078행, 호출 중앙값 2,415ms → 658ms (DEV 로컬 계측)', href: '#/project/kice/more-cases' },
+  { tag: '성능 시험', title: '외부 업체 성능 시험 전 JMeter 사전 점검', note: '기준은 동시접속 10,000·평균 4,500 TPS·응답 3초, 외부 업체 시험 통과', href: '#/project/ntcn/contributions' },
+  { tag: '장애 복구', title: '내가 반영한 변경 뒤의 채점 장애를 rollback으로 복구', note: '기관별 차이와 변경 시점을 비교해 원인 후보를 좁힘', href: '#/project/kice/tenant-cache' },
+  { tag: '저장 계약', title: 'Excel에 없는 값은 삭제 요청이 아니다', note: '전체 교체를 식별 Key 기반 갱신으로 변경', href: '#/project/kice/excel-contract' },
 ] as const
 
 export const featuredCases = [
@@ -93,7 +102,7 @@ export const featuredCases = [
   },
   {
     project: kice, caseId: 'hotspot-preview', visual: 'checks',
-    tag: '반영 전 검증', metric: '1,446 / 1,446', metricNote: '자동판정 예상값 일치 · 미리보기 API · 점수 저장 없음',
+    tag: '반영 전 검증', metric: '1,446 / 1,446', metricNote: '자동판정 전체가 예상값과 일치 · 1,447건 중 나머지 1건은 수동점수 유지',
     title: '채점 기준을 고친 뒤, 운영 답안 1,447건을 반영 전에 대조했습니다',
     description: '단위 테스트 밖의 실제 요청 반례로 결함을 찾아 보완하고, 저장된 답안 전체를 새 기준으로 먼저 판정했습니다.',
   },

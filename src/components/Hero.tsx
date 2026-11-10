@@ -18,7 +18,7 @@ export default function Hero() {
       <div className="hero__head">
         <div className="hero__identity">
           <img src={`${import.meta.env.BASE_URL}jdnam4.jpg`} alt="" width="48" height="64" fetchPriority="high" />
-          <p><strong>{profile.hero.name}</strong><span>Java/Spring 백엔드 개발자</span></p>
+          <p><strong>{profile.hero.name}</strong><span>Java/Spring 백엔드 개발자, 실무 {profile.careerSummary.total}</span></p>
         </div>
         <h1 id="profile-title" className="hero__title">{profile.hero.headline}</h1>
       </div>

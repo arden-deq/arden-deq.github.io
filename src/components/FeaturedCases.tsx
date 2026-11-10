@@ -1,4 +1,4 @@
-import { featuredCases } from '../assets/data/profile'
+import { featuredCases, moreCases } from '../assets/data/profile'
 import type { CaseEvidence } from '../assets/data/types'
 import './FeaturedCases.css'
 
@@ -57,9 +57,16 @@ export default function FeaturedCases() {
           )
         })}
       </ol>
-      <p className="cases__more">
-        저장 계약 사례도 있습니다. <a href="#/project/kice/excel-contract">Excel에 없는 값은 삭제 요청이 아니다</a>
-      </p>
+      <h3 className="cases__more-title">그 밖의 사례</h3>
+      <ul className="cases__more">
+        {moreCases.map((item) => (
+          <li key={item.href}>
+            <span className="cases__more-tag">{item.tag}</span>
+            <a href={item.href}>{item.title}</a>
+            <span className="cases__more-note">{item.note}</span>
+          </li>
+        ))}
+      </ul>
     </>
   )
 }

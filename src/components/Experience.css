@@ -13,6 +13,9 @@
 .role__header h3 span { margin-left: 4px; color: var(--graphite); font-weight: 500; font-size: 1rem; }
 .role__header p { color: var(--graphite); font-size: var(--text-small); }
 .role__header .role__duration { color: var(--ink); font-weight: 600; }
+.role__header .role__note { margin-top: 10px; padding-left: 10px; border-left: 2px solid var(--mark); color: var(--ink); font-weight: 600; line-height: 1.5; }
+.roles__between { padding: 14px 0; border-bottom: 1px solid var(--rule); color: var(--graphite); font-size: var(--text-small); }
+.roles__between a { color: var(--ink); font-weight: 600; }
 
 .role__projects { display: grid; gap: 28px; margin: 0; padding: 0; list-style: none; }
 .project-row { display: grid; gap: 6px; }
@@ -20,6 +23,7 @@
 .project-row h4 a { text-decoration-color: var(--rule); }
 .project-row h4 a:hover { text-decoration-color: var(--mark); }
 .project-row p { color: var(--graphite); max-width: 40em; }
+.project-row .project-row__scale { font-size: var(--text-small); }
 .project-row .project-row__tech { color: var(--ink); font-size: var(--text-small); }
 
 .experience-foot {

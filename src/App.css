@@ -56,16 +56,16 @@
 /* Lab */
 .lab-list { display: grid; gap: 0; border-top: 2px solid var(--rule-strong); }
 .lab {
-  display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-  gap: clamp(24px, 4vw, 56px); padding-block: clamp(28px, 4vw, 44px);
+  display: grid; grid-template-columns: minmax(0, 15rem) minmax(0, 1fr);
+  gap: clamp(20px, 3.5vw, 48px); padding-block: clamp(24px, 3.5vw, 36px);
   border-bottom: 1px solid var(--rule);
 }
 .lab:focus { outline: none; }
 .lab__media { margin: 0; }
 .lab__media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--rule); }
-.lab__body { display: grid; align-content: start; gap: 12px; }
+.lab__body { display: grid; align-content: start; gap: 8px; }
 .lab__meta { color: var(--graphite); font-size: var(--text-small); }
-.lab__body h3 { font-size: 1.5rem; }
+.lab__body h3 { font-size: 1.25rem; }
 .lab__body h3 a { text-decoration: none; }
 .lab__body h3 a:hover { text-decoration: underline; text-decoration-color: var(--mark); }
 .lab__body > p { color: var(--graphite); }

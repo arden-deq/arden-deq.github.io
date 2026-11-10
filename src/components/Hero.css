@@ -35,18 +35,22 @@
 
 /* Scorecard: a graded answer sheet. Only the numbers and marks use the red pen. */
 .scorecard {
+  display: grid;
+  grid-template-columns: auto 1fr 28px;
+  column-gap: 20px;
   list-style: none;
   margin: 0;
   padding: 0;
   border-top: 2px solid var(--rule-strong);
 }
 
-.score { border-bottom: 1px solid var(--rule); }
+/* Rows share the scorecard's columns so every label starts on the same line. */
+.score { display: grid; grid-template-columns: subgrid; grid-column: 1 / -1; border-bottom: 1px solid var(--rule); }
 .score a {
   display: grid;
-  grid-template-columns: minmax(7.5rem, auto) 1fr 28px;
+  grid-template-columns: subgrid;
+  grid-column: 1 / -1;
   align-items: center;
-  gap: 20px;
   padding: 18px 2px;
   text-decoration: none;
 }
@@ -79,7 +83,8 @@
 }
 
 @media (max-width: 480px) {
-  .score a { grid-template-columns: 1fr 24px; gap: 4px 12px; }
+  .scorecard { grid-template-columns: 1fr 24px; column-gap: 12px; }
+  .score a { row-gap: 4px; }
   .score__value { grid-column: 1; }
   .score__text { grid-column: 1; }
   .score__check { grid-column: 2; grid-row: 1 / span 2; width: 24px; height: 24px; }

@@ -2,9 +2,14 @@ import { profile } from '../assets/data/profile'
 import './Experience.css'
 
 const roles = [
-  { period: '2025.07 ~ 현재', type: '프리랜서', duration: profile.careerSummary.freelance, slugs: ['kice'] },
+  { period: '2025.07 ~ 현재', type: '프리랜서', duration: profile.careerSummary.freelance, slugs: ['kice'], note: '퓨쳐누리 시절 팀장이던 현 PL의 요청으로 다시 합류했습니다.' },
   { period: '2021.10 ~ 2024.09', type: '정규직', duration: profile.careerSummary.permanent, slugs: ['neotest-maintenance', 'ntcn'] },
 ]
+
+// 프로젝트 전체의 범위이며 개인 담당 범위는 각 상세에서 구분합니다.
+const projectScale: Record<string, string> = {
+  kice: '프로젝트 범위: 표준 문항 유형 14종, 서비스 연결 11종, 기관(테넌트)별 DB 스키마 분리',
+}
 
 export default function Experience() {
   return (
@@ -16,6 +21,7 @@ export default function Experience() {
               <h3>퓨쳐누리 <span>{role.type}</span></h3>
               <p className="num">{role.period}</p>
               <p className="role__duration">{role.duration}</p>
+              {role.note && <p className="role__note">{role.note}</p>}
             </header>
             <ul className="role__projects">
               {role.slugs.map((slug) => {
@@ -25,6 +31,7 @@ export default function Experience() {
                   <li key={slug} id={`project-${slug}`} tabIndex={-1} className="project-row">
                     <h4><a id={`open-${slug}`} href={`#/project/${slug}`}>{project.name}</a></h4>
                     <p>{project.summary}</p>
+                    {projectScale[slug] && <p className="project-row__scale">{projectScale[slug]}</p>}
                     <p className="project-row__tech">{(project.featuredTech ?? project.tech).join(', ')}</p>
                   </li>
                 )
@@ -33,6 +40,9 @@ export default function Experience() {
           </section>
         ))}
       </div>
+      <p className="roles__between">
+        두 기간 사이인 <span className="num">2025.01 ~ 02</span>에는 Chrome 확장 <a href="#/project/keep-your-focus">Keep Your Focus</a>를 만들어 스토어에 배포했습니다.
+      </p>
 
       <div className="experience-foot">
         <dl className="skills">

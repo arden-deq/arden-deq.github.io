@@ -2,7 +2,7 @@ import type { Project } from './types'
 
 export const kice: Project = {
   slug: 'kice',
-  name: 'KICE · AI 기반 학력진단 시스템',
+  name: '한국교육과정평가원(KICE) · AI 기반 학력진단 시스템',
   shortName: 'KICE',
   role: 'Java Backend Engineer',
   period: '2025.07~현재',

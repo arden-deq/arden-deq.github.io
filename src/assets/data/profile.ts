@@ -27,7 +27,7 @@ export const profile = {
   hero: {
     name: '남정덕',
     title: 'Backend Engineer · Java / Spring',
-    headline: '운영 데이터를 바꾸기 전에,\n바뀔 결과부터 맞춰 봅니다.',
+    headline: '담당 경계와 상관없이,\n제품의 문제를 끝까지 풉니다.',
     summary: '문항·시험지·채점 API를 개발하고, SQL 병목과 채점 오류를 데이터로 대조해 바로잡는 Java/Spring 백엔드 개발자입니다.',
   },
   careerSummary: {
@@ -78,33 +78,32 @@ export const profile = {
 }
 
 export const scorecard = [
-  { value: '674', unit: '건', label: '결과 공개 전에 바로잡은 판정', basis: '운영 답안 1,447건 대조 · 승인 후 전체 재채점 반영', href: '#/project/kice/hotspot-preview' },
-  { value: '525', unit: '건', label: '재채점 중 수동점수 보존', basis: '175명 재채점 · 실패 0건', href: '#/project/kice/safe-regrading' },
   { value: '1.3', unit: '초', label: '문항 검색 API p95 응답시간', basis: '13.2초에서 단축 · 3초 넘는 요청 20.8% → 0.2%', href: '#/project/kice/search-latency' },
+  { value: '175', unit: '명', label: '운영 재채점, 실패 0건', basis: '수동점수 525건 보존 · 총점 변화가 사전 예상과 일치', href: '#/project/kice/safe-regrading' },
+  { value: '1,447', unit: '건', label: '내 변경을 결과 공개 전에 전수 검수', basis: '판정 674건을 스스로 찾아 정정 · 승인 후 재채점 반영', href: '#/project/kice/hotspot-preview' },
   { value: '99.6', unit: '%', label: '핵심 SQL 실행시간 단축', basis: '93,051ms → 382ms · 핵심 SQL 1건 기준', href: '#/project/neotest-maintenance/database-bottleneck' },
 ] as const
 
 // 홈의 대표 사례 아래에 한 줄씩 보여주는 사례. 수치의 범위는 각 상세의 기록을 그대로 따릅니다.
 export const moreCases = [
-  { tag: '이벤트 순서', title: '답안 저장보다 먼저 끝나던 채점의 순서 개선', note: 'Kafka 동일 Topic·응시 ID Key와 저장 후 발행을 제안하고 담당 서비스에 적용', href: '#/project/kice/kafka-order' },
+  { tag: '담당 범위 밖', title: '담당이 아닌 채점 순서 문제를 분석해 해법을 제안', note: '실제 응시 부하에서 드러난 문제 · 동일 Topic·Key와 멱등성 키를 제안해 검수 후 반영', href: '#/project/kice/kafka-order' },
   { tag: '조회 성능', title: '문항 검색 API p95 응답시간 13.2초 → 1.3초', note: '후보 키 페이징과 상세 조회를 분리 · 3초 넘는 요청 20.8% → 0.2% (운영 APM 기준)', href: '#/project/kice/search-latency' },
   { tag: '성능 시험', title: '외부 업체 성능 시험 전 JMeter 사전 점검', note: '기준은 동시접속 10,000·평균 4,500 TPS·응답 3초, 외부 업체 시험 통과', href: '#/project/ntcn/contributions' },
-  { tag: '장애 복구', title: '내가 반영한 변경 뒤의 채점 장애를 rollback으로 복구', note: '기관별 차이와 변경 시점으로 원인을 좁히고 캐시 키를 수정', href: '#/project/kice/tenant-cache' },
   { tag: '저장 계약', title: 'Excel에 없는 값은 삭제 요청이 아니다', note: '전체 교체를 식별 Key 기반 갱신으로 변경', href: '#/project/kice/excel-contract' },
 ] as const
 
 export const featuredCases = [
   {
-    project: kice, caseId: 'hotspot-preview', visual: 'checks',
-    tag: '반영 전 검증', metric: '674건', metricNote: '오답→정답 661 · 정답→오답 13 · 자동판정 1,446건 기대값 일치',
-    title: '운영 답안 1,447건을 대조해, 결과가 나가기 전에 판정 674건을 바로잡았습니다',
-    description: '시험 1주일 전에 급히 넣은 제 채점 로직의 결함을 운영 데이터 검수로 찾았습니다. 실제 요청 반례로 보완하고, 저장된 답안 전체를 새 기준으로 먼저 판정했습니다.',
-  },
-  {
     project: kice, caseId: 'safe-regrading', visual: 'checks',
     tag: '데이터 정합성', metric: '525 / 525', metricNote: '수동점수 보존 · 총점 +844 예상과 일치',
     title: '수동점수를 지키면서 175명을 재채점했습니다',
-    description: '바꿀 점수와 지킬 점수를 나누고, 전체 preview와 대표 2명 선실행으로 범위를 확인한 뒤 확대했습니다.',
+    description: '실행 전에 절차서를 써서 검토를 받았습니다. 바꿀 점수와 지킬 점수를 나누고, 백업과 복구 훈련, 대표 2명 선실행을 거쳐 한 건씩 확대했습니다.',
+  },
+  {
+    project: kice, caseId: 'hotspot-preview', visual: 'checks',
+    tag: '반영 전 검증', metric: '674건', metricNote: '오답→정답 661 · 정답→오답 13 · 자동판정 1,446건 기대값 일치',
+    title: '운영 답안 1,447건을 대조해, 결과가 나가기 전에 판정 674건을 바로잡았습니다',
+    description: '시험 1주일 전에 제가 추가한 문항 유형의 채점을 운영 데이터로 직접 검수해 결함을 찾았습니다. 실제 요청 반례로 보완하고, 저장된 답안 전체를 새 기준으로 먼저 판정했습니다.',
   },
   {
     project: futurenuri, caseId: 'database-bottleneck', visual: 'timing',

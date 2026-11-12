@@ -73,10 +73,10 @@ function Case({ item, index }: { item: EngineeringCase; index: number }) {
         <p className="p-case__result">{item.outcome}</p>
       </header>
       <dl className="p-brief">
-        <div><dt>문제</dt><dd>{item.summary}</dd></div>
-        {item.decision && <div><dt>핵심 판단</dt><dd>{item.decision}</dd></div>}
+        <div><dt>상황</dt><dd>{item.summary}</dd></div>
+        {item.decision && <div><dt>해결 방향</dt><dd>{item.decision}</dd></div>}
         {item.verification && <div><dt>검증</dt><dd>{item.verification}</dd></div>}
-        <div><dt>내 역할</dt><dd>{item.role}</dd></div>
+        <div><dt>맡은 일</dt><dd>{item.role}</dd></div>
       </dl>
       {!item.compact && item.evidence && <Evidence evidence={item.evidence} />}
       {!item.compact && (
@@ -91,7 +91,7 @@ function Case({ item, index }: { item: EngineeringCase; index: number }) {
           <tbody>{item.comparison.rows.map((row) => <tr key={row.label}><th scope="row">{row.label}</th><td>{row.before}</td><td>{row.after}</td></tr>)}</tbody>
         </table>
       )}
-      {(item.scope || item.limits) && <p className="p-note"><strong>결과의 범위</strong>{item.scope || item.limits}</p>}
+      {(item.scope || item.limits) && <p className="p-note"><strong>범위</strong>{item.scope || item.limits}</p>}
       {!item.compact && item.learning && <p className="p-note"><strong>회고</strong>{item.learning}</p>}
       {item.source && <p className="p-small">참고 · <a href={item.source.url}>{item.source.title}</a></p>}
     </article>
@@ -256,7 +256,7 @@ export default function PrintPortfolio() {
 
       <section className="p-chapter">
         <h2 className="p-section-title">개인 프로젝트</h2>
-        <p className="p-lead">로컬 AI의 대화 품질과 실시간 게임의 조작감을 직접 정의했습니다. K-Racing은 웹에 공개했고, CharaNest는 품질 기준을 넘지 못해 출시를 보류한 프로토타입입니다.</p>
+        <p className="p-lead">로컬 AI 대화 품질과 웹 게임 조작감의 기준을 직접 정했습니다. K-Racing은 웹에 공개했고, CharaNest는 품질 기준을 넘지 못해 출시를 보류한 프로토타입입니다.</p>
         {profile.explorations.map((project) => <LabProject key={project.slug} project={project} />)}
         <article className="p-lab p-lab--mini">
           <div>

@@ -14,7 +14,7 @@ const sideProject: Project = {
   role: '개인 프로젝트 · 기획·개발·배포',
   tech: ['TypeScript', 'Chrome Extensions (MV3)', 'Vite'],
   summary: '집중 타이머와 사이트 차단을 제공하는 Chrome 확장 앱을 만들어 스토어에 배포했습니다.',
-  focus: '개인의 생산성 문제를 사용 가능한 제품으로',
+  focus: '집중 타이머·사이트 차단 확장 앱',
   context: ['작업 중 주의가 분산되는 문제에서 출발한 개인 프로젝트입니다. 집중 시간을 설정하고 특정 사이트 또는 허용 목록 외 사이트를 차단할 수 있습니다.'],
   contributions: [
     { title: '브라우저 확장 앱 개발·배포', description: '옵션 화면과 사이트 차단·집중 타이머를 구성하고 Chrome Web Store에 배포했습니다.' },
@@ -80,16 +80,16 @@ export const profile = {
 export const scorecard = [
   { value: '1.3', unit: '초', label: '문항 검색 API p95 응답시간', basis: '13.2초에서 단축 · 3초 넘는 요청 20.8% → 0.2%', href: '#/project/kice/search-latency' },
   { value: '175', unit: '명', label: '운영 재채점, 실패 0건', basis: '수동점수 525건 보존 · 총점 변화가 사전 예상과 일치', href: '#/project/kice/safe-regrading' },
-  { value: '1,447', unit: '건', label: '내 변경을 결과 공개 전에 전수 검수', basis: '판정 674건을 스스로 찾아 정정 · 승인 후 재채점 반영', href: '#/project/kice/hotspot-preview' },
+  { value: '1,447', unit: '건', label: '내 변경을 결과 공개 전에 전수 검수', basis: '판정 674건을 찾아 정정 · 승인 후 재채점 반영', href: '#/project/kice/hotspot-preview' },
   { value: '99.6', unit: '%', label: '핵심 SQL 실행시간 단축', basis: '93,051ms → 382ms · 핵심 SQL 1건 기준', href: '#/project/neotest-maintenance/database-bottleneck' },
 ] as const
 
 // 홈의 대표 사례 아래에 한 줄씩 보여주는 사례. 수치의 범위는 각 상세의 기록을 그대로 따릅니다.
 export const moreCases = [
-  { tag: '담당 범위 밖', title: '담당이 아닌 채점 순서 문제를 분석해 해법을 제안', note: '실제 응시 부하에서 드러난 문제 · 동일 Topic·Key와 멱등성 키를 제안해 검수 후 반영', href: '#/project/kice/kafka-order' },
+  { tag: '담당 범위 밖', title: 'Kafka 채점 순서 역전 원인 분석·해법 제안', note: '실제 응시 부하에서 드러난 문제 · 동일 Topic·Key와 멱등성 키를 제안해 검수 후 반영', href: '#/project/kice/kafka-order' },
   { tag: '조회 성능', title: '문항 검색 API p95 응답시간 13.2초 → 1.3초', note: '후보 키 페이징과 상세 조회를 분리 · 3초 넘는 요청 20.8% → 0.2% (운영 APM 기준)', href: '#/project/kice/search-latency' },
   { tag: '성능 시험', title: '외부 업체 성능 시험 전 JMeter 사전 점검', note: '기준은 동시접속 10,000·평균 4,500 TPS·응답 3초, 외부 업체 시험 통과', href: '#/project/ntcn/contributions' },
-  { tag: '저장 계약', title: 'Excel에 없는 값은 삭제 요청이 아니다', note: '전체 교체를 식별 Key 기반 갱신으로 변경', href: '#/project/kice/excel-contract' },
+  { tag: '저장 계약', title: 'Excel에 없던 보정자료 삭제 수정', note: '전체 교체를 식별 Key 기반 갱신으로 변경', href: '#/project/kice/excel-contract' },
 ] as const
 
 export const featuredCases = [

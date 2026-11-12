@@ -79,7 +79,7 @@ export const profile = {
 
 export const scorecard = [
   { value: '99.6', unit: '%', label: '핵심 SQL 실행시간 단축', basis: '93,051ms → 382ms · 핵심 SQL 1건 기준', href: '#/project/neotest-maintenance/database-bottleneck' },
-  { value: '1,446', unit: '건', label: '반영 전 판정이 예상값과 일치', basis: '운영 답안 1,447건 대조 · 수동점수 1건 제외', href: '#/project/kice/hotspot-preview' },
+  { value: '674', unit: '건', label: '결과 공개 전에 바로잡은 판정', basis: '운영 답안 1,447건 대조 · 승인 후 전체 재채점 반영', href: '#/project/kice/hotspot-preview' },
   { value: '525', unit: '건', label: '재채점 중 수동점수 보존', basis: '175명 재채점 · 실패 0건', href: '#/project/kice/safe-regrading' },
   { value: '16', unit: '개', label: '시스템 개발·운영', basis: '15개 기관 · 운영 요청 314건+ 처리', href: '#/project/neotest-maintenance' },
 ] as const
@@ -102,8 +102,8 @@ export const featuredCases = [
   },
   {
     project: kice, caseId: 'hotspot-preview', visual: 'checks',
-    tag: '반영 전 검증', metric: '1,446 / 1,446', metricNote: '자동판정 전체가 예상값과 일치 · 1,447건 중 나머지 1건은 수동점수 유지',
-    title: '채점 기준을 고친 뒤, 운영 답안 1,447건을 반영 전에 대조했습니다',
+    tag: '반영 전 검증', metric: '674건', metricNote: '오답→정답 661 · 정답→오답 13 · 자동판정 1,446건 기대값 일치',
+    title: '운영 답안 1,447건을 대조해, 결과가 나가기 전에 판정 674건을 바로잡았습니다',
     description: '단위 테스트 밖의 실제 요청 반례로 결함을 찾아 보완하고, 저장된 답안 전체를 새 기준으로 먼저 판정했습니다.',
   },
   {

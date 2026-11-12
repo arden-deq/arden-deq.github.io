@@ -9,7 +9,8 @@
     "build": "tsc -b && vite build",
     "postbuild": "node -e \"require('node:fs').copyFileSync('docs/index.html', 'docs/404.html')\"",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "pdf": "node scripts/export-pdf.mjs"
   },
   "dependencies": {
     "react": "^19.1.1",

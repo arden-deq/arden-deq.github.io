@@ -15,6 +15,8 @@
 .hero__identity span { color: var(--graphite); font-size: var(--text-small); }
 
 .hero__title {
+  text-wrap: balance;
+  word-break: keep-all;
   font-size: var(--text-display);
   line-height: 1.22;
   letter-spacing: -0.035em;

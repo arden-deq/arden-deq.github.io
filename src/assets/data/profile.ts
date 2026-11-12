@@ -78,9 +78,9 @@ export const profile = {
 }
 
 export const scorecard = [
-  { value: '99.6', unit: '%', label: '핵심 SQL 실행시간 단축', basis: '93,051ms → 382ms · 핵심 SQL 1건 기준', href: '#/project/neotest-maintenance/database-bottleneck' },
   { value: '674', unit: '건', label: '결과 공개 전에 바로잡은 판정', basis: '운영 답안 1,447건 대조 · 승인 후 전체 재채점 반영', href: '#/project/kice/hotspot-preview' },
   { value: '525', unit: '건', label: '재채점 중 수동점수 보존', basis: '175명 재채점 · 실패 0건', href: '#/project/kice/safe-regrading' },
+  { value: '99.6', unit: '%', label: '핵심 SQL 실행시간 단축', basis: '93,051ms → 382ms · 핵심 SQL 1건 기준', href: '#/project/neotest-maintenance/database-bottleneck' },
   { value: '16', unit: '개', label: '시스템 개발·운영', basis: '15개 기관 · 운영 요청 314건+ 처리', href: '#/project/neotest-maintenance' },
 ] as const
 
@@ -89,27 +89,27 @@ export const moreCases = [
   { tag: '이벤트 순서', title: '답안 저장보다 먼저 끝나던 채점의 순서 개선', note: 'Kafka 동일 Topic·응시 ID Key와 저장 후 발행을 제안하고 담당 서비스에 적용', href: '#/project/kice/kafka-order' },
   { tag: '조회 성능', title: '분류트리 조회에서 DB가 읽는 행 약 82% 감소', note: '45,947행 → 8,078행, 호출 중앙값 2,415ms → 658ms (DEV 로컬 계측)', href: '#/project/kice/more-cases' },
   { tag: '성능 시험', title: '외부 업체 성능 시험 전 JMeter 사전 점검', note: '기준은 동시접속 10,000·평균 4,500 TPS·응답 3초, 외부 업체 시험 통과', href: '#/project/ntcn/contributions' },
-  { tag: '장애 복구', title: '내가 반영한 변경 뒤의 채점 장애를 rollback으로 복구', note: '기관별 차이와 변경 시점을 비교해 원인 후보를 좁힘', href: '#/project/kice/tenant-cache' },
+  { tag: '장애 복구', title: '내가 반영한 변경 뒤의 채점 장애를 rollback으로 복구', note: '기관별 차이와 변경 시점으로 원인을 좁히고 캐시 키를 수정', href: '#/project/kice/tenant-cache' },
   { tag: '저장 계약', title: 'Excel에 없는 값은 삭제 요청이 아니다', note: '전체 교체를 식별 Key 기반 갱신으로 변경', href: '#/project/kice/excel-contract' },
 ] as const
 
 export const featuredCases = [
   {
-    project: futurenuri, caseId: 'database-bottleneck', visual: 'timing',
-    tag: '성능', metric: '382ms', metricNote: '93,051ms에서 단축 · 핵심 SQL 1건의 전후 기록',
-    title: '3,062만 건 테이블의 조회 병목을 복합 인덱스로 풀었습니다',
-    description: 'DB CPU 100%의 원인을 실제 JOIN 조건으로 좁혀 인덱스를 설계하고, 주변 쿼리까지 전후를 비교했습니다.',
-  },
-  {
     project: kice, caseId: 'hotspot-preview', visual: 'checks',
     tag: '반영 전 검증', metric: '674건', metricNote: '오답→정답 661 · 정답→오답 13 · 자동판정 1,446건 기대값 일치',
     title: '운영 답안 1,447건을 대조해, 결과가 나가기 전에 판정 674건을 바로잡았습니다',
-    description: '단위 테스트 밖의 실제 요청 반례로 결함을 찾아 보완하고, 저장된 답안 전체를 새 기준으로 먼저 판정했습니다.',
+    description: '시험 직전에 급히 넣은 제 채점 로직의 결함을 운영 데이터 검수로 찾았습니다. 실제 요청 반례로 보완하고, 저장된 답안 전체를 새 기준으로 먼저 판정했습니다.',
   },
   {
     project: kice, caseId: 'safe-regrading', visual: 'checks',
     tag: '데이터 정합성', metric: '525 / 525', metricNote: '수동점수 보존 · 총점 +844 예상과 일치',
     title: '수동점수를 지키면서 175명을 재채점했습니다',
     description: '바꿀 점수와 지킬 점수를 나누고, 전체 preview와 대표 2명 선실행으로 범위를 확인한 뒤 확대했습니다.',
+  },
+  {
+    project: futurenuri, caseId: 'database-bottleneck', visual: 'timing',
+    tag: '성능', metric: '382ms', metricNote: '93,051ms에서 단축 · 핵심 SQL 1건의 전후 기록',
+    title: '3,062만 건 테이블의 조회 병목을 복합 인덱스로 풀었습니다',
+    description: 'DB CPU 100%의 원인을 실제 JOIN 조건으로 좁혀 인덱스를 설계하고, 주변 쿼리까지 전후를 비교했습니다.',
   },
 ] as const

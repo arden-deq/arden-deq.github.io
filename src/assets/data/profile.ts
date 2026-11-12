@@ -27,7 +27,7 @@ export const profile = {
   hero: {
     name: '남정덕',
     title: 'Backend Engineer · Java / Spring',
-    headline: '담당 경계와 상관없이,\n제품의 문제를 끝까지 풉니다.',
+    headline: '약 176만 명이 응시한 학력진단 플랫폼의\n채점 서비스를 처음부터 만들어 맡고 있습니다.',
     summary: '문항·시험지·채점 API를 개발하고, SQL 병목과 채점 오류를 데이터로 대조해 바로잡는 Java/Spring 백엔드 개발자입니다.',
   },
   careerSummary: {

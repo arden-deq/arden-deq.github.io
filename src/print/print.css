@@ -146,6 +146,12 @@ a { text-decoration: none; }
 .p-lab__links { grid-column: 1 / -1; display: flex; flex-wrap: wrap; gap: 2pt 14pt; font-size: 8pt; }
 .p-lab__links a { border-bottom: 0.5pt solid var(--rule); }
 .p-lab--mini { grid-template-columns: 1fr; }
+.p-lab__results { grid-column: 1 / -1; }
+.p-lab__results dl { display: grid; grid-template-columns: repeat(auto-fit, minmax(30mm, 1fr)); gap: 4pt 14pt; margin: 0 0 3pt; }
+.p-lab__results dl div { display: flex; flex-direction: column; }
+.p-lab__results dd { margin: 0; color: var(--mark); font-size: 17pt; font-weight: 800; line-height: 1.1; }
+.p-lab__results small { font-size: 9pt; margin-left: 1pt; }
+.p-lab__results dt { font-size: 8pt; color: var(--graphite); }
 
 .p-closing { margin-top: 30pt; padding-top: 16pt; border-top: 1.5pt solid var(--ink); break-inside: avoid; }
 .p-closing h2 { font-size: 14pt; margin-bottom: 4pt; }

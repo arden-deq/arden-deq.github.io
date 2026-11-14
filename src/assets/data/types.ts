@@ -89,6 +89,14 @@ export interface Project {
     question: string
     quickLink?: { title: string; url: string }
   }
+  results?: {
+    title: string
+    basis: string
+    short: string
+    items: { value: string; unit: string; label: string }[]
+    note?: string
+    table?: { head: string[]; rows: string[][] }
+  }
   writings?: { title: string; url: string; date: string; summary: string }[]
 }
 

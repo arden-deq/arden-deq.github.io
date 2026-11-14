@@ -3,6 +3,7 @@ import { futurenuri } from './futurenuri'
 import { ntcn } from './ntcn'
 import { charanest } from './charanest'
 import { kracing } from './kracing'
+import { onsen } from './onsen'
 import type { Project, SkillCategory } from './types'
 export type { Project, SkillCategory } from './types'
 
@@ -40,7 +41,7 @@ export const profile = {
     calculation: '정규직 2021.10.01~2024.09.30(3년)과 프리랜서 2025.07 하순~2026.11(1년 3개월)을 합산했습니다. 재직 중 프로젝트 기간은 중복 합산하지 않았습니다.',
   },
   projects: [kice, futurenuri, ntcn],
-  explorations: [kracing, charanest],
+  explorations: [kracing, onsen, charanest],
   sideProject,
   career: [
     {

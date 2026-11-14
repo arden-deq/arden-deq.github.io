@@ -10,11 +10,11 @@ export const charanest: Project = {
   period: '2026 · 개발 기록 5~8월',
   role: '개인 프로젝트 · 제품 기획·설계·개발·평가',
   tech: ['Electron', 'llama.cpp', 'SQLite', 'TypeScript', 'React', 'Python'],
-  summary: '로컬 LLM으로 대화하고 기억하는 데스크톱 AI 컴패니언입니다. 대화 계약, 런타임 수명주기와 출시 기준을 다뤘습니다.',
+  summary: '저사양 모델(2B)로 개인 비서 용도로 어디까지 가능할지 시험해본 프로젝트입니다. 테스트는 통과했지만, 사용자 안전과 완성도 기준을 넘지 못해 잠시 중단했습니다.',
   focus: '로컬 AI · 대화 품질 · 사용자 통제형 기억',
   showcase: {
     category: 'Local AI · Desktop',
-    status: '개발 중 · Prototype',
+    status: '잠시 중단 · Prototype',
     image: 'projects/charanest-overlay.jpg',
     imageAlt: '데스크톱 위에 픽셀 캐릭터, 대화 로그와 입력창을 띄운 CharaNest 개발 화면',
     caption: '실제 개발 빌드 · 화면 일부에는 이전 프로젝트 명칭이 남아 있습니다.',
@@ -24,7 +24,7 @@ export const charanest: Project = {
   context: [
     '픽셀 캐릭터가 데스크톱에 머물며 대화하는 오프라인 우선 AI 컴패니언 프로토타입입니다. Electron 오버레이, 로컬 LLM과 SQLite를 연결하고 Windows·macOS에서 개발·검증했습니다.',
     '2026년 8월 공개 문서 기준, 기본 실행 경로는 외부 검색 백엔드를 시작하지 않습니다. 아래 5~6월의 검색·대화 파이프라인 사례는 이전 실험 기록이며, 최신 정보 검색 실험은 현재 제품 기본 경로와 분리된 평가 환경에 있습니다.',
-    '현재 비공개 개발 중으로 다운로드는 제공하지 않습니다. 공개 저장소에는 설계 설명과 개발 화면을 담았으며, 애플리케이션 소스·모델·학습 데이터는 포함하지 않습니다.',
+    '현재 잠시 중단한 상태로 다운로드는 제공하지 않습니다. 공개 저장소에는 설계 설명과 개발 화면을 담았으며, 애플리케이션 소스·모델·학습 데이터는 포함하지 않습니다.',
   ],
   flow: {
     summary: '현재 제품의 로컬 실행 구조입니다. UI의 요청은 제한된 IPC를 통과하고, Main process가 저장소와 모델 프로세스를 관리합니다.',
@@ -66,7 +66,7 @@ export const charanest: Project = {
     {
       id: 'runtime-quality',
       navTitle: '런타임과 출시 기준',
-      title: '테스트는 통과했지만, 출시를 보류했다',
+      title: '테스트는 통과했지만, 잠시 중단했다',
       axis: 'Reliability',
       summary: '로컬 모델의 시작·종료와 실행 환경을 관리하고, 기능 통과와 제품 출시의 기준을 분리했습니다.',
       decision: '실행 환경을 고정해 재현하고, 기능 테스트 통과와 별도로 제품 품질 gate를 적용했습니다.',

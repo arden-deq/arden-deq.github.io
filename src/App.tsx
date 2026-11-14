@@ -72,7 +72,7 @@ function App() {
               <Experience />
             </Section>
 
-            <Section id="lab" title="개인 프로젝트" intro="K-Racing은 조작감과 완료 기준을 제가 정하고, 코드 작성·분석·테스트에 AI 도구를 써서 웹에 공개한 3D 레이싱입니다. CharaNest는 품질 기준에 못 미쳐 출시를 보류한 로컬 AI 프로토타입입니다.">
+            <Section id="lab" title="개인 프로젝트" intro="웹에 공개해 실제 이용자가 있는 K-Racing과 온천, 그리고 저사양 로컬 AI를 시험한 CharaNest입니다. 이용 기록은 각 프로젝트 아래에 있습니다.">
               <div className="lab-list">
                 {profile.explorations.map((project) => <ExplorationCard key={project.slug} project={project} />)}
               </div>

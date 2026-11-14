@@ -66,7 +66,7 @@ export default function ProjectDetail({ project, section, backHref }: ProjectDet
             <dl className="detail__facts">
               <div><dt>역할</dt><dd>{project.role}</dd></div>
               {project.responsibility && <div><dt>책임 범위</dt><dd>{project.responsibility}</dd></div>}
-              <div><dt>기술</dt><dd>{project.tech.join(', ')}</dd></div>
+              {project.tech.length > 0 && <div><dt>기술</dt><dd>{project.tech.join(', ')}</dd></div>}
             </dl>
             {project.showcase && (
               <figure className="detail-cover">
@@ -75,6 +75,25 @@ export default function ProjectDetail({ project, section, backHref }: ProjectDet
               </figure>
             )}
             {project.cases.length > 0 && <nav className="project-case-index" aria-label="이 프로젝트의 문제 해결 사례">{project.cases.map((item) => <a key={item.id} href={href(item.id)}>{item.navTitle || item.title}{item.status && <span>{item.status}</span>}</a>)}</nav>}
+            {project.results && (
+              <section className="detail-results" aria-labelledby="results-title">
+                <h2 id="results-title" className="detail__block-title">{project.results.title}</h2>
+                <dl className="lab__results">
+                  {project.results.items.map((item) => (
+                    <div key={item.label}><dt>{item.label}</dt><dd className="num">{item.value}<small>{item.unit}</small></dd></div>
+                  ))}
+                </dl>
+                <p className="detail__lead">{project.results.basis}</p>
+                {project.results.note && <p className="detail__lead">{project.results.note}</p>}
+                {project.results.table && (
+                  <table className="results-table">
+                    <caption className="sr-only">{project.name} 일별 이용 기록</caption>
+                    <thead><tr>{project.results.table.head.map((cell) => <th key={cell} scope="col">{cell}</th>)}</tr></thead>
+                    <tbody>{project.results.table.rows.map((row) => <tr key={row[0]}>{row.map((cell, index) => index === 0 ? <th key={index} scope="row">{cell}</th> : <td key={index}>{cell}</td>)}</tr>)}</tbody>
+                  </table>
+                )}
+              </section>
+            )}
             <details className="disclosure">
               <summary>프로젝트 배경과 공통 범위</summary>
               {project.context.map((paragraph) => <p key={paragraph} className="detail__paragraph">{paragraph}</p>)}

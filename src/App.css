@@ -75,6 +75,22 @@
 .lab__body > p { color: var(--graphite); }
 .lab__question { margin: 4px 0; padding-left: 14px; border-left: 3px solid var(--blue); font-weight: 600; }
 .lab__tech { font-size: var(--text-small); }
+.lab__results { display: grid; grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr)); gap: 12px 20px; margin: 4px 0; padding-top: 12px; border-top: 1px solid var(--rule); }
+.lab__results div { display: grid; gap: 2px; }
+.lab__results dt { order: 2; color: var(--graphite); font-size: var(--text-caption); line-height: 1.4; }
+.lab__results dd { margin: 0; color: var(--mark); font-size: 1.75rem; font-weight: 800; line-height: 1.1; letter-spacing: -0.03em; }
+.lab__results-note { color: var(--graphite); font-size: var(--text-caption); }
+.lab__results small { margin-left: 2px; font-size: 0.5em; font-weight: 700; }
+
+.detail-results { margin-top: 40px; }
+.detail-results .lab__results { margin: 8px 0 16px; }
+.detail-results .detail__lead { margin: 0 0 12px; }
+.detail-results .results-table { margin-top: 20px; }
+.results-table { width: 100%; border-collapse: collapse; font-size: var(--text-small); }
+.results-table th, .results-table td { padding: 8px 12px 8px 0; border-bottom: 1px solid var(--rule); text-align: right; font-variant-numeric: tabular-nums; }
+.results-table th:first-child, .results-table td:first-child { text-align: left; }
+.results-table thead th { color: var(--graphite); font-weight: 500; border-bottom-color: var(--rule-strong); }
+.results-table tbody tr:last-child { font-weight: 700; }
 .lab__links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 4px 0 0; padding: 0; list-style: none; font-weight: 600; font-size: var(--text-small); }
 
 .lab-mini {

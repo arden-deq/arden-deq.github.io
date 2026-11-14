@@ -156,8 +156,18 @@ function LabProject({ project }: { project: Project }) {
         <p className="p-chapter__meta">{showcase.category} · {showcase.status} · {project.period}</p>
         <h3>{project.name}</h3>
         <p>{project.summary}</p>
-        <p className="p-small">{project.tech.join(', ')}</p>
+        {project.tech.length > 0 && <p className="p-small">{project.tech.join(', ')}</p>}
       </div>
+      {project.results && (
+        <div className="p-lab__results">
+          <dl>
+            {project.results.items.map((item) => (
+              <div key={item.label}><dd className="num">{item.value}<small>{item.unit}</small></dd><dt>{item.label}</dt></div>
+            ))}
+          </dl>
+          <p className="p-small">{project.results.basis}{project.results.note ? ` ${project.results.note}` : ''}</p>
+        </div>
+      )}
       <ul className="p-lab__cases">
         {project.cases.map((item) => <li key={item.id}><strong>{item.title}</strong><p>{item.summary} {item.outcome}.</p></li>)}
       </ul>
@@ -256,7 +266,7 @@ export default function PrintPortfolio() {
 
       <section className="p-chapter">
         <h2 className="p-section-title">개인 프로젝트</h2>
-        <p className="p-lead">로컬 AI 대화 품질과 웹 게임 조작감의 기준을 직접 정했습니다. K-Racing은 웹에 공개했고, CharaNest는 품질 기준을 넘지 못해 출시를 보류한 프로토타입입니다.</p>
+        <p className="p-lead">웹에 공개해 실제 이용자가 있는 K-Racing과 온천, 그리고 저사양 로컬 AI를 시험한 CharaNest입니다.</p>
         {profile.explorations.map((project) => <LabProject key={project.slug} project={project} />)}
         <article className="p-lab p-lab--mini">
           <div>

@@ -21,7 +21,7 @@
   font-size: var(--text-small); cursor: pointer;
 }
 .evidence-switch button + button, .regrading-stages button + button { border-left: 1px solid var(--rule); }
-.evidence-switch button[aria-pressed="true"], .regrading-stages button[aria-pressed="true"] { background: var(--ink); color: var(--paper); font-weight: 600; }
+.evidence-switch button[aria-pressed="true"], .regrading-stages button[aria-pressed="true"] { background: var(--blue); color: var(--blue-ink); font-weight: 600; }
 .regrading-stages button span { margin-right: 6px; font-variant-numeric: tabular-nums; }
 
 /* Sequence */

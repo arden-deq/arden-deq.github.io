@@ -11,6 +11,10 @@
   --rule: light-dark(#D9DBD4, #2F3133);
   --rule-strong: light-dark(#1A1A1A, #ECECE8);
   --mark: light-dark(#C8211A, #FF6B5E);
+  /* 구조의 색: 버튼·분류 라벨·사진 그림자·띠 배경. 성과 수치와 체크는 계속 Mark(빨강)만 씁니다. */
+  --blue: light-dark(#1D3FBF, #8FB0FF);
+  --blue-ink: light-dark(#FFFFFF, #0B1530);
+  --wash: light-dark(#E6ECFA, #18213A);
 
   --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
   --text-display: clamp(2.25rem, 1.4rem + 3.6vw, 4rem);

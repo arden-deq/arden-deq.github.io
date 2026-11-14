@@ -20,7 +20,7 @@
   display: flex; align-items: center; gap: 24px;
   max-width: var(--page-max); margin-inline: auto; padding: 12px var(--gutter);
 }
-.site-nav__brand { font-weight: 800; font-size: var(--text-body); letter-spacing: -0.02em; text-decoration: none; }
+.site-nav__brand { color: var(--blue); font-weight: 800; font-size: var(--text-body); letter-spacing: -0.02em; text-decoration: none; }
 .site-nav__links { margin-left: auto; font-size: var(--text-small); }
 .site-nav__links ul { display: flex; gap: clamp(14px, 2.4vw, 28px); margin: 0; padding: 0; list-style: none; }
 .site-nav__links a { display: inline-flex; align-items: center; min-height: 44px; padding-inline: 4px; text-decoration: none; color: var(--graphite); }
@@ -52,6 +52,8 @@
   text-decoration: none; cursor: pointer;
 }
 .button:hover { background: transparent; color: var(--ink); }
+.button--blue { background: var(--blue); border-color: var(--blue); color: var(--blue-ink); }
+.button--blue:hover { background: transparent; color: var(--blue); }
 .button--quiet { background: transparent; color: var(--ink); border-color: var(--graphite); }
 .button--quiet:hover { border-color: var(--ink); }
 
@@ -66,12 +68,12 @@
 .lab__media { margin: 0; }
 .lab__media img { display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border: 1px solid var(--rule); }
 .lab__body { display: grid; align-content: start; gap: 8px; }
-.lab__meta { color: var(--graphite); font-size: var(--text-small); }
+.lab__meta { color: var(--blue); font-weight: 600; font-size: var(--text-small); }
 .lab__body h3 { font-size: var(--text-h3); }
 .lab__body h3 a { text-decoration: none; }
 .lab__body h3 a:hover { text-decoration: underline; text-decoration-color: var(--mark); }
 .lab__body > p { color: var(--graphite); }
-.lab__question { margin: 4px 0; padding-left: 14px; border-left: 2px solid var(--rule-strong); font-weight: 600; }
+.lab__question { margin: 4px 0; padding-left: 14px; border-left: 3px solid var(--blue); font-weight: 600; }
 .lab__tech { font-size: var(--text-small); }
 .lab__links { display: flex; flex-wrap: wrap; gap: 8px 20px; margin: 4px 0 0; padding: 0; list-style: none; font-weight: 600; font-size: var(--text-small); }
 
@@ -119,7 +121,7 @@
   color: var(--graphite); text-decoration: none; line-height: 1.45;
 }
 .detail-toc__list a:hover { color: var(--ink); }
-.detail-toc__list a[aria-current] { color: var(--ink); font-weight: 600; border-left-color: var(--rule-strong); }
+.detail-toc__list a[aria-current] { color: var(--blue); font-weight: 700; border-left-color: var(--blue); }
 .detail-toc__back { color: var(--graphite); }
 
 .detail-content { min-width: 0; max-width: 46rem; }

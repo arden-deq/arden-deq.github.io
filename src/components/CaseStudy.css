@@ -9,7 +9,7 @@
 
 .engineering-case__header { display: grid; gap: 10px; }
 .engineering-case__meta { display: flex; flex-wrap: wrap; gap: 4px 14px; color: var(--graphite); font-size: var(--text-small); }
-.engineering-case__meta span:first-child { color: var(--ink); font-weight: 700; }
+.engineering-case__meta span:first-child { color: var(--blue); font-weight: 700; }
 .engineering-case h3 { font-size: clamp(1.4rem, 1.2rem + 0.8vw, 1.875rem); letter-spacing: -0.03em; }
 
 .case-result {

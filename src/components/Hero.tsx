@@ -15,7 +15,7 @@ export default function Hero({ onOpenResume }: { onOpenResume: () => void }) {
     <section id="profile" className="hero" tabIndex={-1} aria-labelledby="profile-title">
       <div className="hero__head">
         <div className="hero__identity">
-          <img src={`${import.meta.env.BASE_URL}jdnam4.jpg`} alt="" width="48" height="64" fetchPriority="high" />
+          <img src={`${import.meta.env.BASE_URL}jdnam4.jpg`} alt="남정덕의 사진" width="144" height="192" fetchPriority="high" />
           <p><strong>{profile.hero.name}</strong><span>{keepDuration(`${profile.hero.title}, 실무 ${profile.careerSummary.total}, 현재 ${profile.careerSummary.current.replace(' · ', ' ')}`)}</span></p>
         </div>
         <h1 id="profile-title" className="hero__title">{profile.hero.headline}</h1>

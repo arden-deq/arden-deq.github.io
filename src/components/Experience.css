@@ -13,7 +13,7 @@
 .role__header h3 span { margin-left: 4px; color: var(--graphite); font-weight: 500; font-size: 1rem; }
 .role__header p { color: var(--graphite); font-size: var(--text-small); }
 .role__header .role__duration { color: var(--ink); font-weight: 600; }
-.role__header .role__note { margin-top: 10px; padding-left: 10px; border-left: 2px solid var(--rule-strong); color: var(--ink); font-weight: 600; line-height: 1.5; }
+.role__header .role__note { margin-top: 10px; padding-left: 10px; border-left: 3px solid var(--blue); color: var(--ink); font-weight: 600; line-height: 1.5; }
 .roles__between { padding: 14px 0; border-bottom: 1px solid var(--rule); color: var(--graphite); font-size: var(--text-small); }
 .roles__between a { color: var(--ink); font-weight: 600; white-space: nowrap; }
 

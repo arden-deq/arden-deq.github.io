@@ -9,7 +9,7 @@
 }
 
 .case-row__metric { display: grid; align-content: start; gap: 6px; }
-.case-row__tag { color: var(--graphite); font-size: var(--text-small); font-weight: 600; }
+.case-row__tag { color: var(--blue); font-size: var(--text-small); font-weight: 700; }
 .case-row__metric strong {
   color: var(--mark);
   font-size: clamp(1.75rem, 1.3rem + 1.4vw, 2.375rem);
@@ -60,7 +60,7 @@
   border-bottom: 1px solid var(--rule);
   line-height: 1.5;
 }
-.cases__more-tag { grid-row: 1 / span 2; color: var(--graphite); font-size: var(--text-small); }
+.cases__more-tag { grid-row: 1 / span 2; color: var(--blue); font-weight: 600; font-size: var(--text-small); }
 .cases__more a { font-weight: 700; text-decoration-color: var(--rule); }
 .cases__more a:hover { text-decoration-color: var(--mark); }
 .cases__more-note { grid-column: 2; color: var(--graphite); font-size: var(--text-small); text-wrap: balance; }

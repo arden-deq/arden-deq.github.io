@@ -87,7 +87,7 @@ function App() {
               <div className="contact">
                 <a className="contact__email" href={`mailto:${profile.contact.email}`}>{profile.contact.email}</a>
                 <ul className="contact__links">
-                  <li><button type="button" className="button" onClick={() => setResumeOpen(true)}>이력서 보기</button></li>
+                  <li><button type="button" className="button button--blue" onClick={() => setResumeOpen(true)}>이력서 보기</button></li>
                   <li><a href={profile.contact.github} target="_blank" rel="noreferrer noopener">GitHub</a></li>
                   <li><a href={profile.contact.blog} target="_blank" rel="noreferrer noopener">기술 블로그</a></li>
                 </ul>

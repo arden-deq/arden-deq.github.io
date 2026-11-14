@@ -3,15 +3,15 @@
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
   gap: clamp(36px, 5vw, 56px) clamp(40px, 6vw, 88px);
   align-items: start;
-  padding-block: clamp(56px, 9vw, 120px) clamp(56px, 8vw, 104px);
+  padding-block: clamp(48px, 7vw, 96px) clamp(56px, 8vw, 104px);
   border-bottom: 1px solid var(--rule-strong);
 }
 
-.hero__head { grid-column: 1 / -1; }
+.hero__head { grid-column: 1 / -1; container-type: inline-size; }
 .hero__identity { display: flex; align-items: center; gap: 14px; margin-bottom: clamp(28px, 4vw, 44px); }
 .hero__identity img { width: 48px; height: 64px; object-fit: cover; border-radius: 2px; filter: grayscale(1) contrast(1.05); }
 .hero__identity p { display: grid; line-height: 1.4; }
-.hero__identity strong { font-size: 1.0625rem; }
+.hero__identity strong { font-size: var(--text-body); }
 .hero__identity span { color: var(--graphite); font-size: var(--text-small); }
 
 .hero__title {
@@ -23,12 +23,16 @@
   font-weight: 800;
   white-space: pre-line;
 }
+/* 가장 긴 줄(약 17em)이 한 줄에 들어가도록 폭에 맞춰 줄입니다. 좁은 화면의 4줄 배치는 그대로 둡니다. */
+@media (min-width: 720px) {
+  .hero__title { font-size: min(var(--text-display), 5.6cqi); }
+}
 
 .hero__lead {
   margin-top: 4px;
   max-width: 30em;
   color: var(--graphite);
-  font-size: 1.125rem;
+  font-size: var(--text-lead);
   line-height: 1.7;
 }
 
@@ -53,7 +57,7 @@
   grid-template-columns: subgrid;
   grid-column: 1 / -1;
   align-items: center;
-  padding: 18px 2px;
+  padding: 16px 2px;
   text-decoration: none;
 }
 .score a:hover .score__text strong { text-decoration: underline; text-decoration-color: var(--mark); text-underline-offset: 0.22em; }
@@ -69,8 +73,9 @@
 .score__value small { margin-left: 3px; font-size: 0.42em; font-weight: 700; letter-spacing: -0.01em; }
 
 .score__text { display: grid; gap: 2px; line-height: 1.45; }
-.score__text strong { font-size: 1.0625rem; font-weight: 700; }
-.score__text span { color: var(--graphite); font-size: var(--text-small); }
+.score__text strong { font-size: var(--text-body); font-weight: 700; text-wrap: balance; }
+.score__basis { color: var(--graphite); font-size: var(--text-small); }
+
 
 .score__check { width: 28px; height: 28px; color: var(--mark); }
 .score__check path { stroke-dasharray: 1; stroke-dashoffset: 0; }
@@ -85,6 +90,7 @@
 }
 
 @media (max-width: 480px) {
+  .hero__actions .button--quiet { order: 1; }
   .scorecard { grid-template-columns: 1fr 24px; column-gap: 12px; }
   .score a { row-gap: 4px; }
   .score__value { grid-column: 1; }

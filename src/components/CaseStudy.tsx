@@ -27,7 +27,7 @@ export default function CaseStudy({ item, index, href, active }: CaseStudyProps)
         <h3 id={`${item.id}-title`}>{item.title}</h3>
       </header>
 
-      <p className="case-result"><span className="sr-only">결과: </span>{item.outcome}</p>
+      <p className="case-result"><span className="sr-only">결과: </span>{item.outcome.split(' · ').map((clause) => <span key={clause} className="clause">{clause}</span>)}</p>
 
       <dl className="case-brief">
         <div><dt>문제</dt><dd>{item.summary}</dd></div>

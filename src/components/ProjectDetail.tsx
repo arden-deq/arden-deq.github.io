@@ -2,6 +2,7 @@ import { useState } from 'react'
 import type { Project } from '../assets/data/profile'
 import ProjectDiagram from './ProjectDiagram'
 import CaseStudy from './CaseStudy'
+import { keepMiddleDot } from '../utils/text'
 
 interface ProjectDetailProps {
   project: Project
@@ -59,7 +60,7 @@ export default function ProjectDetail({ project, section, backHref }: ProjectDet
           <section id="project-overview" tabIndex={-1} className="detail__block" aria-labelledby="project-title">
             <header className="detail__header">
               <p className="detail__meta">{project.employment ? `${project.employment.company} ${project.employment.type}, ` : ''}{project.period}</p>
-              <h1 id="project-title" className="detail__title">{project.name}</h1>
+              <h1 id="project-title" className="detail__title">{keepMiddleDot(project.name)}</h1>
               <p className="detail__tagline">{project.summary}</p>
             </header>
             <dl className="detail__facts">
@@ -73,7 +74,7 @@ export default function ProjectDetail({ project, section, backHref }: ProjectDet
                 <figcaption>{project.showcase.status}. {project.showcase.caption}</figcaption>
               </figure>
             )}
-            {project.cases.length > 0 && <nav className="project-case-index" aria-label="이 프로젝트의 문제 해결 사례">{project.cases.map((item) => <a key={item.id} href={href(item.id)}>{item.navTitle || item.title}<span>{item.status || '사례'}</span></a>)}</nav>}
+            {project.cases.length > 0 && <nav className="project-case-index" aria-label="이 프로젝트의 문제 해결 사례">{project.cases.map((item) => <a key={item.id} href={href(item.id)}>{item.navTitle || item.title}{item.status && <span>{item.status}</span>}</a>)}</nav>}
             <details className="disclosure">
               <summary>프로젝트 배경과 공통 범위</summary>
               {project.context.map((paragraph) => <p key={paragraph} className="detail__paragraph">{paragraph}</p>)}

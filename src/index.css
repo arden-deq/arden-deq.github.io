@@ -11,17 +11,18 @@
   --rule: light-dark(#D9DBD4, #2F3133);
   --rule-strong: light-dark(#1A1A1A, #ECECE8);
   --mark: light-dark(#C8211A, #FF6B5E);
-  --mark-wash: light-dark(#FBE9E7, #3A1F1C);
 
   --font: 'Pretendard Variable', Pretendard, -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Noto Sans KR', 'Malgun Gothic', system-ui, sans-serif;
   --text-display: clamp(2.25rem, 1.4rem + 3.6vw, 4rem);
   --text-h2: clamp(1.6rem, 1.2rem + 1.6vw, 2.25rem);
   --text-h3: 1.25rem;
+  --text-lead: 1.125rem;
   --text-body: 1.0625rem;
   --text-small: 0.9375rem;
   --text-caption: 0.8125rem;
 
   --page-max: 1120px;
+  --nav-height: 69px;
   --gutter: clamp(20px, 5vw, 48px);
   --measure: 40em;
 
@@ -61,11 +62,16 @@ button { font: inherit; color: inherit; }
 
 .num { font-variant-numeric: tabular-nums; }
 
+/* 가운뎃점으로 이은 보조 문장은 구 단위로만 줄을 바꿉니다. */
+.nowrap { white-space: nowrap; }
+.clause { display: inline-block; }
+.clause:not(:last-child)::after { content: "\00a0·"; margin-right: 0.3em; }
+
 .sr-only {
   position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px;
   overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0;
 }
 
 @media (max-width: 640px) {
-  body { font-size: 1rem; }
+  :root { --text-body: 1rem; }
 }

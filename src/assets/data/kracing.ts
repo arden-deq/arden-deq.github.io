@@ -11,7 +11,7 @@ export const kracing: Project = {
   period: '2026 · 공개 개발 기록 8월',
   role: '개인 프로젝트 · 기획·개발·배포 · AI 도구와 협업',
   tech: ['Three.js', 'WebRTC', 'Web Worker', 'Node.js', 'JavaScript', 'Playwright'],
-  summary: '브라우저에서 바로 달리는 3D 카트 레이싱. 조작감부터 멀티플레이 상태 동기화, 서버가 검증하는 주간 기록까지 구현했습니다.',
+  summary: '브라우저에서 바로 달리는 3D 카트 레이싱. 조작감부터 멀티플레이 상태 동기화, 서버가 검증하는 주간 기록, 배포 실패 시 복구까지 구현했습니다.',
   focus: '실시간 시뮬레이션 · 멀티플레이 · 입력 재생 검증',
   showcase: {
     category: 'Realtime · 3D Web',

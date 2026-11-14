@@ -25,8 +25,9 @@ export default function ResumeDialog({ onClose }: { onClose: () => void }) {
       </div>
       <div className="resume-document">
         <header>
-          <p className="resume-document__role">Java/Spring 백엔드 개발자</p>
+          <p className="resume-document__role">{profile.hero.title}</p>
           <h2 id="resume-title">남정덕</h2>
+          <p className="resume-document__headline">{profile.hero.headline.replace('\n', ' ')}</p>
           <p>{profile.hero.summary}</p>
           <a href={`mailto:${profile.contact.email}`}>{profile.contact.email}</a>
           <div className="resume-document__links"><a href={profile.contact.github} target="_blank" rel="noreferrer noopener">GitHub</a><a href={profile.contact.blog} target="_blank" rel="noreferrer noopener">기술 블로그</a></div>
@@ -34,11 +35,12 @@ export default function ResumeDialog({ onClose }: { onClose: () => void }) {
         <section aria-labelledby="resume-career">
           <h3 id="resume-career">경력 <span>{profile.careerSummary.total}</span></h3>
           {[...profile.career].reverse().map((item) => <article key={item.period}><div className="resume-document__meta"><strong>{item.title}</strong><span>{item.period}</span></div><p>{item.subtitle}</p><ul>{item.points.map((point) => <li key={point}>{point}</li>)}</ul></article>)}
+          <p className="resume-document__scope">두 기간 사이인 {profile.sideProject.period}에는 Chrome 확장 {profile.sideProject.name}를 만들어 스토어에 배포했습니다.</p>
           <p className="resume-document__scope">{profile.careerSummary.calculation}</p>
         </section>
         <section aria-labelledby="resume-cases">
-          <h3 id="resume-cases">대표 문제 해결</h3>
-          {featuredCases.map((item) => <article key={item.caseId}><h4>{item.title}</h4><p><strong className="resume-document__metric">{item.metric}</strong> {item.metricNote}</p><p>{item.description}</p></article>)}
+          <h3 id="resume-cases">대표 사례</h3>
+          {featuredCases.map((item) => <article key={item.caseId}><h4>{item.title}</h4><p><strong className="resume-document__metric">{item.metric}</strong> {item.metricNote}</p><p>{item.description}</p><p className="resume-document__scope">{item.project.employment?.company} {item.project.employment?.type}, {item.project.shortName} {item.project.period}</p></article>)}
         </section>
         <section aria-labelledby="resume-skills"><h3 id="resume-skills">기술과 활용</h3><dl>{profile.skills.map((item) => <div key={item.category}><dt>{item.category}</dt><dd>{item.items.join(' · ')}</dd></div>)}</dl></section>
         <section aria-labelledby="resume-education"><h3 id="resume-education">학력</h3>{profile.education.map((item) => <p key={item.title}>{item.title} · {item.subtitle} <span className="resume-document__scope">({item.period})</span></p>)}</section>

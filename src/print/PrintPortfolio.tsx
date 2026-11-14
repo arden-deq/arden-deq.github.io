@@ -8,8 +8,8 @@ const bareUrl = (url: string) => url.replace(/^https?:\/\//, '').replace(/\/$/, 
 const pad = (index: number) => String(index + 1).padStart(2, '0')
 
 const roles = [
-  { period: '2025.07 ~ 현재', type: '프리랜서', duration: profile.careerSummary.freelance, projects: [profile.projects[0]] },
-  { period: '2021.10 ~ 2024.09', type: '정규직', duration: profile.careerSummary.permanent, projects: [profile.projects[1], profile.projects[2]] },
+  { period: '2025.07~현재', type: '프리랜서', duration: profile.careerSummary.freelance, projects: [profile.projects[0]] },
+  { period: '2021.10~2024.09', type: '정규직', duration: profile.careerSummary.permanent, projects: [profile.projects[1], profile.projects[2]] },
 ]
 
 function Evidence({ evidence }: { evidence: CaseEvidence }) {

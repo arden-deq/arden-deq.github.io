@@ -1,4 +1,5 @@
 import type { ProjectFlow } from '../assets/data/types'
+import { keepMiddleDot } from '../utils/text'
 
 export default function ProjectDiagram({ flow }: { flow: ProjectFlow }) {
   return (
@@ -7,8 +8,8 @@ export default function ProjectDiagram({ flow }: { flow: ProjectFlow }) {
       <ol className="flow-nodes">
         {flow.nodes.map((node) => (
           <li className="flow-node" key={node.title}>
-            <div className="flow-node__context"><h3>{node.title}</h3><p>{node.description}</p></div>
-            {node.contribution && <p className="flow-node__contribution"><span className="sr-only">개인 기여: </span>{node.contribution}</p>}
+            <div className="flow-node__context"><h3>{keepMiddleDot(node.title)}</h3><p>{keepMiddleDot(node.description)}</p></div>
+            {node.contribution && <p className="flow-node__contribution"><span className="sr-only">개인 기여: </span>{keepMiddleDot(node.contribution)}</p>}
           </li>
         ))}
       </ol>

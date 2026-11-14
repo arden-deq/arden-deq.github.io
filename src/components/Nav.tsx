@@ -4,6 +4,7 @@ interface NavProps {
   detail: boolean
   backHref: string
   themeButton: ReactNode
+  onOpenResume: () => void
 }
 
 const items = [
@@ -13,7 +14,7 @@ const items = [
   { id: 'contact', label: '연락처' },
 ]
 
-export default function Nav({ detail, backHref, themeButton }: NavProps) {
+export default function Nav({ detail, backHref, themeButton, onOpenResume }: NavProps) {
   return (
     <header className="site-nav">
       <div className="site-nav__inner">
@@ -25,6 +26,7 @@ export default function Nav({ detail, backHref, themeButton }: NavProps) {
             </ul>
           )}
         </nav>
+        <button type="button" className="site-nav__resume" onClick={onOpenResume}>이력서</button>
         {themeButton}
       </div>
     </header>

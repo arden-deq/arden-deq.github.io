@@ -2,7 +2,7 @@
 
 .case-row {
   display: grid;
-  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) minmax(0, 17rem);
+  grid-template-columns: minmax(0, 15rem) minmax(0, 1fr) minmax(0, 18rem);
   gap: clamp(20px, 3.5vw, 48px);
   padding-block: clamp(28px, 4vw, 44px);
   border-bottom: 1px solid var(--rule);
@@ -32,7 +32,7 @@
 .mini--timing { display: grid; gap: 12px; padding-top: 6px; }
 .mini--timing div { display: grid; grid-template-columns: 3.5rem 1fr; grid-template-areas: "label bar" ". value"; gap: 4px 10px; align-items: center; }
 .mini--timing span { grid-area: label; }
-.mini--timing i { grid-area: bar; display: block; height: 10px; background: var(--rule); }
+.mini--timing i { grid-area: bar; display: block; height: 10px; background: color-mix(in srgb, var(--graphite) 70%, var(--paper)); }
 .mini--timing i.mini__bar--after { background: var(--mark); }
 .mini--timing b { grid-area: value; font-weight: 600; color: var(--ink); }
 
@@ -46,10 +46,11 @@
 
 .mini--checks { border-collapse: collapse; width: 100%; }
 .mini--checks th, .mini--checks td { padding: 7px 0; border-bottom: 1px solid var(--rule); text-align: left; font-weight: 400; }
+.mini--checks th { padding-right: 12px; white-space: nowrap; }
 .mini--checks td { color: var(--ink); font-weight: 600; text-align: right; }
 .mini--checks .mini__tick { width: 1.5em; color: var(--mark); }
 
-.cases__more-title { margin-top: clamp(32px, 4vw, 48px); font-size: 1.0625rem; }
+.cases__more-title { margin-top: clamp(32px, 4vw, 48px); font-size: var(--text-body); }
 .cases__more { margin: 12px 0 0; padding: 0; list-style: none; border-top: 1px solid var(--rule-strong); }
 .cases__more li {
   display: grid;
@@ -62,7 +63,7 @@
 .cases__more-tag { grid-row: 1 / span 2; color: var(--graphite); font-size: var(--text-small); }
 .cases__more a { font-weight: 700; text-decoration-color: var(--rule); }
 .cases__more a:hover { text-decoration-color: var(--mark); }
-.cases__more-note { grid-column: 2; color: var(--graphite); font-size: var(--text-small); }
+.cases__more-note { grid-column: 2; color: var(--graphite); font-size: var(--text-small); text-wrap: balance; }
 
 @media (max-width: 960px) {
   .case-row { grid-template-columns: minmax(0, 13rem) minmax(0, 1fr); }

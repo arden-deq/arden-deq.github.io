@@ -1,6 +1,5 @@
-import { useState } from 'react'
 import { profile, scorecard } from '../assets/data/profile'
-import ResumeDialog from './ResumeDialog'
+import { keepDuration } from '../utils/text'
 import './Hero.css'
 
 function CheckMark({ delay }: { delay: number }) {
@@ -11,22 +10,21 @@ function CheckMark({ delay }: { delay: number }) {
   )
 }
 
-export default function Hero() {
-  const [resumeOpen, setResumeOpen] = useState(false)
+export default function Hero({ onOpenResume }: { onOpenResume: () => void }) {
   return (
     <section id="profile" className="hero" tabIndex={-1} aria-labelledby="profile-title">
       <div className="hero__head">
         <div className="hero__identity">
           <img src={`${import.meta.env.BASE_URL}jdnam4.jpg`} alt="" width="48" height="64" fetchPriority="high" />
-          <p><strong>{profile.hero.name}</strong><span>Java/Spring 백엔드 개발자, 실무 {profile.careerSummary.total}</span></p>
+          <p><strong>{profile.hero.name}</strong><span>{keepDuration(`${profile.hero.title}, 실무 ${profile.careerSummary.total}, 현재 ${profile.careerSummary.current.replace(' · ', ' ')}`)}</span></p>
         </div>
         <h1 id="profile-title" className="hero__title">{profile.hero.headline}</h1>
       </div>
       <div className="hero__intro">
         <p className="hero__lead">{profile.hero.summary}</p>
         <div className="hero__actions">
-          <button type="button" className="button" onClick={() => setResumeOpen(true)}>이력서 보기</button>
-          <a className="button button--quiet" href={`mailto:${profile.contact.email}`}>메일 보내기</a>
+          <button type="button" className="button" onClick={onOpenResume}>이력서 보기</button>
+          <a className="button button--quiet" href={`mailto:${profile.contact.email}`}><span className="sr-only">메일 보내기: </span>{profile.contact.email}</a>
           <a className="hero__link" href={profile.contact.github} target="_blank" rel="noreferrer noopener">GitHub</a>
         </div>
       </div>
@@ -38,14 +36,13 @@ export default function Hero() {
               <span className="score__value num">{item.value}<small>{item.unit}</small></span>
               <span className="score__text">
                 <strong>{item.label}</strong>
-                <span>{item.basis}</span>
+                <span className="score__basis">{item.basis.split(' · ').map((clause) => <span key={clause} className="clause">{clause}</span>)}</span>
               </span>
               <CheckMark delay={300 + index * 160} />
             </a>
           </li>
         ))}
       </ol>
-      {resumeOpen && <ResumeDialog onClose={() => setResumeOpen(false)} />}
     </section>
   )
 }

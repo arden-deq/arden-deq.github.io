@@ -2,7 +2,7 @@
 @page {
   size: A4;
   margin: 15mm 16mm 17mm;
-  @bottom-left { content: "남정덕 · Java/Spring Backend Engineer"; font: 7pt var(--font); color: #5B5F66; }
+  @bottom-left { content: "남정덕 · Java/Spring 백엔드 개발자"; font: 7pt var(--font); color: #5B5F66; }
   @bottom-right { content: counter(page) " / " counter(pages); font: 7pt var(--font); color: #5B5F66; }
 }
 @page :first {

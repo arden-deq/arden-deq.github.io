@@ -46,7 +46,7 @@ function RegradingEvidence({ evidence }: { evidence: Extract<Evidence, { kind: '
             <caption className="sr-only">사전 기준과 사후 결과 대조</caption>
             <thead><tr><th scope="col">대조 항목</th><th scope="col">사전 기준</th><th scope="col">사후 결과</th></tr></thead>
             <tbody>{evidence.checks.map((check) => (
-              <tr key={check.label}><th scope="row">{check.label}</th><td>{check.expected}</td><td>{check.actual}<span aria-hidden="true"> ✓</span></td></tr>
+              <tr key={check.label}><th scope="row">{check.label}</th><td>{check.expected}</td><td>{check.actual}<span aria-hidden="true">{'\u00A0'}✓</span></td></tr>
             ))}</tbody>
           </table>
         ) : <p className="regrading-preview__pending">전체 적용 결과는 마지막 단계에서 확인할 수 있습니다.</p>}
@@ -86,7 +86,7 @@ export default function CaseEvidence({ evidence }: { evidence: Evidence }) {
             <div><span>적용 후</span><strong>{evidence.afterMs.toLocaleString('en-US')}<small>ms</small></strong></div>
             <div className="timing-evidence__track"><span className="timing-evidence__bar" style={{ width: `${evidence.afterMs / evidence.beforeMs * 100}%` }} /></div>
           </div>
-          <p className="timing-evidence__scale">막대 길이: 동일한 시간 비율 · 서비스 전체 응답시간과 구분</p>
+          <p className="timing-evidence__scale">막대 길이는 같은 시간 비율입니다.</p>
         </div>
       )}
       {evidence.kind === 'sequence' && <SequenceEvidence evidence={evidence} />}

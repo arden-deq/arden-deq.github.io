@@ -9,7 +9,7 @@
 }
 .resume-dialog__actions > span { margin-right: auto; color: var(--graphite); font-size: var(--text-caption); }
 .resume-dialog__actions button {
-  min-height: 40px; padding: 0 14px; border: 1px solid var(--rule); border-radius: 2px;
+  min-height: 40px; padding: 0 14px; border: 1px solid var(--graphite); border-radius: 2px;
   background: transparent; font-size: var(--text-small); cursor: pointer;
 }
 .resume-dialog__actions button:hover { border-color: var(--ink); }
@@ -19,8 +19,9 @@
 .resume-document h2 { font-size: 2rem; margin: 2px 0 10px; }
 .resume-document header > p:not(.resume-document__role) { margin-bottom: 10px; }
 .resume-document__links { display: inline-flex; gap: 16px; margin-left: 20px; }
-.resume-document h3 { display: flex; justify-content: space-between; gap: 16px; font-size: 1.0625rem; padding-bottom: 8px; margin: 28px 0 14px; border-bottom: 2px solid var(--rule-strong); }
-.resume-document h3 > span { color: var(--mark); font-variant-numeric: tabular-nums; }
+.resume-document h3 { display: flex; justify-content: space-between; gap: 16px; font-size: var(--text-body); padding-bottom: 8px; margin: 28px 0 14px; border-bottom: 2px solid var(--rule-strong); }
+.resume-document h3 > span { color: var(--ink); font-variant-numeric: tabular-nums; }
+.resume-document__headline { font-size: var(--text-lead); font-weight: 700; line-height: 1.5; }
 .resume-document h4 { font-size: 1rem; margin-bottom: 4px; }
 .resume-document article { margin-bottom: 16px; }
 .resume-document article p { margin: 2px 0; }

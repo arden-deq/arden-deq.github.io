@@ -1,4 +1,4 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import './App.css'
 import Nav from './components/Nav'
 import Section from './components/Section'
@@ -7,21 +7,24 @@ import FeaturedCases from './components/FeaturedCases'
 import Experience from './components/Experience'
 import ExplorationCard from './components/ExplorationCard'
 import Hero from './components/Hero'
+import ResumeDialog from './components/ResumeDialog'
 import usePortfolioNavigation from './hooks/usePortfolioNavigation'
 import useColorScheme from './hooks/useColorScheme'
 import { profile } from './assets/data/profile'
+import { keepDuration } from './utils/text'
 
 function App() {
   const { scheme, toggle } = useColorScheme()
   const { route, backHref } = usePortfolioNavigation()
+  const [resumeOpen, setResumeOpen] = useState(false)
   const projects = [...profile.projects, ...profile.explorations, profile.sideProject]
   const activeProject = route ? projects.find((project) => project.slug === route.slug) : undefined
 
   useEffect(() => {
     const activeCase = activeProject?.cases.find((item) => item.id === route?.section)
     document.title = activeProject
-      ? `${activeCase?.title || activeProject.name} | 남정덕 · Backend Engineer`
-      : '남정덕 | Java·Spring Backend Engineer'
+      ? `${activeCase?.title || activeProject.name} | 남정덕 · ${profile.hero.title}`
+      : `남정덕 | ${profile.hero.title}`
   }, [activeProject, route?.section])
 
   const themeButton = (
@@ -45,7 +48,7 @@ function App() {
   return (
     <div className="app-shell">
       <a className="skip-link" href={route ? `#/project/${route.slug}/project-overview` : '#main-content'}>본문으로 건너뛰기</a>
-      <Nav detail={!!route} backHref={backHref} themeButton={themeButton} />
+      <Nav detail={!!route} backHref={backHref} themeButton={themeButton} onOpenResume={() => setResumeOpen(true)} />
       <main id="main-content" tabIndex={-1} className={`page${route ? ' page--detail' : ''}`}>
         {route ? (
           activeProject ? (
@@ -59,17 +62,17 @@ function App() {
           )
         ) : (
           <>
-            <Hero />
+            <Hero onOpenResume={() => setResumeOpen(true)} />
 
-            <Section id="cases" title="대표 사례" intro="병목은 조회 조건으로 좁히고, 채점 변경은 반영 전에 대조하고, 수동점수는 지켰습니다.">
+            <Section id="cases" title="대표 사례" intro="운영 데이터를 바꾸기 전에 예상값을 정해 두고 대조한 채점 사례 2건과, 조회 시간을 줄인 사례 2건입니다. 위 채점표와 같은 순서입니다.">
               <FeaturedCases />
             </Section>
 
-            <Section id="experience" title="경력과 프로젝트" intro={`퓨쳐누리에서 정규직 ${profile.careerSummary.permanent}, 프리랜서 ${profile.careerSummary.freelance}을 일했습니다. 총 실무경력 ${profile.careerSummary.total}, ${profile.careerSummary.asOf} 기준입니다.`}>
+            <Section id="experience" title="경력과 프로젝트" intro={keepDuration(`퓨쳐누리에서 정규직 ${profile.careerSummary.permanent}, 프리랜서 ${profile.careerSummary.freelance}을 일했습니다. 총 실무경력은 ${profile.careerSummary.total}이며(${profile.careerSummary.asOf} 기준), 재직 중 프로젝트 기간은 겹쳐 세지 않았습니다.`)}>
               <Experience />
             </Section>
 
-            <Section id="lab" title="개인 프로젝트" intro="K-Racing은 AI 도구를 코드 작성·분석·테스트에 쓰면서 조작감과 완료 기준을 직접 정해 웹에 공개했습니다. CharaNest는 직접 세운 품질 기준에 따라 출시를 보류한 로컬 AI 프로토타입입니다.">
+            <Section id="lab" title="개인 프로젝트" intro="K-Racing은 조작감과 완료 기준을 제가 정하고, 코드 작성·분석·테스트에 AI 도구를 써서 웹에 공개한 3D 레이싱입니다. CharaNest는 품질 기준에 못 미쳐 출시를 보류한 로컬 AI 프로토타입입니다.">
               <div className="lab-list">
                 {profile.explorations.map((project) => <ExplorationCard key={project.slug} project={project} />)}
               </div>
@@ -80,10 +83,11 @@ function App() {
               </article>
             </Section>
 
-            <Section id="contact" title="함께 일할 기회를 찾고 있습니다" intro="데이터와 운영의 정확성을 함께 고민할 Java/Spring 백엔드 팀이라면 연락 주세요.">
+            <Section id="contact" title="Java/Spring 백엔드 자리를 찾고 있습니다" intro="아래 메일로 연락 주세요. 이력서 요약은 열어서 인쇄하거나 PDF로 저장할 수 있습니다.">
               <div className="contact">
                 <a className="contact__email" href={`mailto:${profile.contact.email}`}>{profile.contact.email}</a>
                 <ul className="contact__links">
+                  <li><button type="button" className="button" onClick={() => setResumeOpen(true)}>이력서 보기</button></li>
                   <li><a href={profile.contact.github} target="_blank" rel="noreferrer noopener">GitHub</a></li>
                   <li><a href={profile.contact.blog} target="_blank" rel="noreferrer noopener">기술 블로그</a></li>
                 </ul>
@@ -93,9 +97,10 @@ function App() {
         )}
       </main>
       <footer className="site-footer">
-        <span>남정덕, Java/Spring Backend Engineer</span>
+        <span>남정덕, {profile.hero.title}</span>
         <span>경력 정보 {profile.careerSummary.asOf} 기준</span>
       </footer>
+      {resumeOpen && <ResumeDialog onClose={() => setResumeOpen(false)} />}
     </div>
   )
 }

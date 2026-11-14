@@ -15,7 +15,7 @@
 .case-result {
   padding-left: 16px;
   border-left: 3px solid var(--mark);
-  font-size: 1.125rem;
+  font-size: var(--text-lead);
   font-weight: 700;
   line-height: 1.55;
 }
@@ -23,16 +23,16 @@
 .case-brief { display: grid; margin: 0; border-top: 1px solid var(--rule); }
 .case-brief div { display: grid; grid-template-columns: 6.5rem 1fr; gap: 16px; padding: 12px 0; border-bottom: 1px solid var(--rule); }
 .case-brief dt { color: var(--graphite); font-size: var(--text-small); padding-top: 2px; }
-.case-brief dd { margin: 0; }
+.case-brief dd { margin: 0; max-width: var(--measure); }
 
 .case-scope { color: var(--graphite); font-size: var(--text-small); }
 .case-scope strong { color: var(--ink); font-weight: 600; }
 
 .case-supporting { margin-top: 0; }
 .case-steps { display: grid; gap: 24px; margin: 20px 0; padding: 0; list-style: none; }
-.case-steps h4 { display: flex; gap: 12px; align-items: baseline; font-size: 1.0625rem; margin-bottom: 8px; }
-.case-steps h4 span { color: var(--mark); font-weight: 800; min-width: 1em; }
-.case-steps p { color: var(--ink); padding-left: calc(1em + 12px); }
+.case-steps h4 { display: flex; gap: 12px; align-items: baseline; font-size: var(--text-body); margin-bottom: 8px; }
+.case-steps h4 span { color: var(--ink); font-weight: 800; min-width: 1em; }
+.case-steps p { color: var(--ink); padding-left: calc(1em + 12px); max-width: calc(var(--measure) + 1em + 12px); }
 .case-steps p + p { margin-top: 10px; }
 
 .case-comparison { margin-block: 24px; overflow-x: auto; }
